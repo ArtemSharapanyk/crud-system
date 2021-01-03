@@ -1,9 +1,12 @@
-import React  from 'react';
-import Layout from './hoc/Layout/Layout';
-import             './assets/css/main.css';
+import React                            from 'react';
+import {BrowserRouter,Switch,Route}     from 'react-router-dom';
+import                                        './assets/scss/main.scss';
 
-export default () => (
-    <Layout>
-        dasd
-    </Layout>
-)
+
+export default () => {
+    return (
+        <div className="app">
+            <h2>China</h2>
+        </div>
+    )
+}

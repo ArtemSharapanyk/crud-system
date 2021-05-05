@@ -1,9 +1,8 @@
-const mainRouter = require('./routes/baseRouter');
-
-const cors = require('cors');
-const express   = require('express');
-const {connect} = require('mongoose');
-const config = require('config');const baseRouter = require('./routes/baseRouter');
+import authRouter from './routes/auth/auth.js';
+import express from 'express';
+import config from 'config';
+import cors from 'cors';
+import mongoose from 'mongoose';
 
 const PORT = config.get('port') || 3000;
 const URL_DATABASE = config.get('mongoUrl');
@@ -12,15 +11,18 @@ const app = express();
 
 app.use(cors());
 
-app.use('/',baseRouter)
+app.use(express.json({ extended: true }));
+
+app.use('/api',authRouter)
+
 
 const startServer = async () => {
     try{
-        await connect(URL_DATABASE, {
+        mongoose.connect(URL_DATABASE, {
+            useUnifiedTopology: true, 
             useNewUrlParser: true,
-            useUnifiedTopology: true,
             useCreateIndex: true
-        });
+        })
 
         app.listen(PORT, () => {
             console.log('server has started')

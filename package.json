@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "backend": "nodemon index.js",
     "client": "npm run dev --prefix client",
@@ -12,11 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^6.0.2",
     "config": "^3.3.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.12.7",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "pg": "^8.6.0"
   }
 }

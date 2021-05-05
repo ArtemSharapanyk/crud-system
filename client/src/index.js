@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 // base imports
 import React                                   from 'react';
 import ReactDOM                                from 'react-dom';

@@ -1,6 +1,6 @@
 import React from 'react'
 import Btn from '../components/Btn/Btn';
-import Input from '../components/Input/Input';
+import Input from '../components/Controller/Controller';
 import useFormValidator from '../hooks/validation/useFormValidator';
 import useInputValidator from '../hooks/validation/useInputValidator';
 import useValidation from '../hooks/validation/useValidation';
@@ -27,8 +27,8 @@ export default () => {
                 Auth
             </h2>
             <div className="page__form-block">
-                <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail} specialClass='auth-section__input' placeholder='Email' />
-                <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword} specialClass='auth-section__input' placeholder='Password' />
+                <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
+                <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">

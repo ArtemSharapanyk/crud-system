@@ -8,7 +8,7 @@ export default () => {
     const {isAuth} = useContext(UserContext);
 
    
-    if(false){
+    if(isAuth){
         return (
             <Switch>
                 <Route path='/user/createProfile'>

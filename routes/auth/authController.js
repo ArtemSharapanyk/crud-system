@@ -1,9 +1,10 @@
+import User from "../../models/user";
+import {hash} from 'bcrypt';
+
 export default class authController{
     async register(req, res){
             try{
-                const {email, password, name, age} = req.body;
-        
-                console.log(email, password, name, age)
+                const {email, password} = req.body;
         
                 const candidate = await User.findOne({email});
         
@@ -15,8 +16,6 @@ export default class authController{
                 const user = await User.create({
                     email, 
                     password: hashedPassword,
-                    name,
-                    age
                 });
         
                 user.save();

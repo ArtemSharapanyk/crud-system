@@ -1,0 +1,36 @@
+.form-control{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1.5px solid $grey-decorated;
+    font-family:$main-font;
+    color: $grey-decorated;
+
+    &_bad-validation{
+        border-bottom-color: $error;
+        color: $error;
+    }
+
+    &_successes-validation{
+        border-bottom-color: $successes;
+        color: $successes;
+    }
+}
+
+.message-block{
+    border: 2px solid $grey-decorated;
+    min-height: 30vh;
+    color: lighten($color: $grey-decorated, $amount: 20);
+    width: 100%;
+    font-family: $main-font;
+    font-size: 0.7rem;
+
+    &_successes-validation{
+        border-color: $successes;
+        color: $successes;
+    }
+
+    &_bad-validation{
+        border-color: $error;
+        color: $error;
+    }
+}

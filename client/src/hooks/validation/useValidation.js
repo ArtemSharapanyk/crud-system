@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-export default (value, validationsRules, baseClasses, dirty) => {
+export default (value, validationsRules, baseClasses, dirty, validatedClasses = {
+    error: 'form-control_bad-validation',
+    successes:'form-control_successes-validation'
+}) => {
     const valueOfInput = value.trim();
 
     const [isEmail, setEmail] = useState(false);
@@ -41,9 +44,9 @@ export default (value, validationsRules, baseClasses, dirty) => {
         ...baseClasses,
         dirty ? 
             !inputValided ?
-                'form-control_bad-validation'
+                validatedClasses.error
             :
-                'form-control_successes-validation'
+                validatedClasses.successes
         : '' 
     ];
 

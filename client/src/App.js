@@ -1,12 +1,20 @@
-import React, { useEffect }                            from 'react';
-import {BrowserRouter,Switch,Route}     from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter}     from 'react-router-dom';
 import                                        './assets/scss/main.scss';
-
+import PageConatiner from './components/PageContainer/PageConatiner';
+import UserState from './states/user/UserState';
 
 export default () => {
+    
     return (
-        <div className="app">
-            <h2>China</h2>
-        </div>
+        <BrowserRouter>
+            <UserState>
+                <main className="pages">
+                    <div className="wrapper">
+                        <PageConatiner/>
+                    </div>
+                </main>
+            </UserState>
+        </BrowserRouter>
     )
 }

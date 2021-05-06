@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import defaulStateReducer from "./defaulStateReducer";
+import User from "./User";
 
 
 export default combineReducers({
-    defaultState:  defaulStateReducer
+    User
 });

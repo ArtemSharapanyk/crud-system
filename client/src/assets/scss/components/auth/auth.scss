@@ -1,0 +1,23 @@
+.auth-section{
+    &__input{
+        font-size: .7em;
+        margin-top: 40px;
+        padding: 10px 15px;
+        width: 100%;
+
+        &:first-child{
+            margin-top: 0;
+        }
+    }
+
+    &__btn-box{
+        width: 70% !important;
+        margin: 0 auto;
+    }
+
+    &__btn{
+        padding: 5px 10px;
+        margin-top: 20px;
+        width: 48%;
+    }
+}

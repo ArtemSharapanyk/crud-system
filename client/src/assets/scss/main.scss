@@ -1,0 +1,66 @@
+@import './fonts';
+@import './vars';
+@import './mixins/adaptiveFont.scss';
+@import './libs';
+
+*{
+    outline: none;
+    box-sizing: border-box;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: $accent;
+}
+
+html{
+    @include adaptiv-font(40, 25);
+    font-family: $main-font;
+}
+
+body{
+    background-color: $black;
+    color: $white;
+}
+
+.wrapper{
+    width: 90%;
+    margin: 10px auto;
+}
+
+.btn-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.page{
+    &__form-block{
+        width: 70%;
+        margin: 0 auto;
+        background-color: $white;
+        padding: 40px;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+
+
+
+//pages blocks
+@import './components/auth/auth.scss';
+@import './components/createProfile/createProfile.scss';
+
+
+//UI
+@import './components/UI/Input/Input';
+@import './components/UI/Btn/Btn.scss';
+
+@import './media.scss';
+

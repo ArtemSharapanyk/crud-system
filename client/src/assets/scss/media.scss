@@ -1,0 +1,14 @@
+@media screen and(max-width: 768px){
+    .page{
+        &__form-block{
+            width: 100%;
+            padding: 7% 5%;
+        }
+    }
+
+    .auth-section{
+        &__input{
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+[33mcommit bab4807b9c2eb26f957fac5fbe3a5993938cb26e[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: ArtemSharapanyk <artmencd2003@gmail.com>
+Date:   Wed May 5 16:48:23 2021 +0300
+
+    created base config of server, did register logic
+
+[33mcommit eabcaae58b6231646cbcd8163bd7ef6746255c7a[m
+Author: ArtemSharapanyk <artmencd2003@gmail.com>
+Date:   Wed May 5 12:54:53 2021 +0300
+
+    base config, vesrion:1
+
+[33mcommit 99d875a089d2de9d6901af6241bf3e209dac89ad[m
+Author: ArtemSharapany <artmencd2003@gmail.com>
+Date:   Sun Jan 3 17:32:43 2021 +0200
+
+    fix some problems with routing, and was added sass
+
+[33mcommit 4f306623d4482234e430edac56e442ce81a46ce7[m
+Author: ArtemSharapanyk <47298730+ArtemSharapanyk@users.noreply.github.com>
+Date:   Fri Nov 27 14:24:57 2020 +0200
+
+    Delete debug.log
+
+[33mcommit 266fb0943ea32900776b983958ee879e02bc42d0[m
+Author: ArtemSharapanyk <artmencd2003@gmail.com>
+Date:   Fri Nov 27 14:17:03 2020 +0200
+
+    first commit

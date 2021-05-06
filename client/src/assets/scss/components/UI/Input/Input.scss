@@ -1,0 +1,17 @@
+.form-control{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1.5px solid $grey-decorated;
+    font-family:$main-font;
+    color: $grey-decorated;
+
+    &_bad-validation{
+        border-bottom-color: $error;
+        color: $error;
+    }
+
+    &_successes-validation{
+        border-bottom-color: $successes;
+        color: $successes;
+    }
+}

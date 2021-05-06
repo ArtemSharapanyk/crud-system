@@ -1,4 +1,5 @@
 {
     "port": 5000,
+    "jwtSecret": "ArtemBox",
     "mongoUrl": "mongodb+srv://ArtemBox:ArtMen2003@cluster0.ooyhg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

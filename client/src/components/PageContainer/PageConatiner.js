@@ -1,19 +1,40 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../states/userContext';
-import Auth from '../../pages/Auth';
 import {Switch, Route,Redirect} from 'react-router-dom';
 import CreateProfilePage from '../../pages/CreateProfilePage';
+import Register from '../../pages/Register';
+import Login from '../../pages/Login';
+import AllProfilesPage from '../../pages/AllProfilesPage';
+import UserInfo from '../../pages/UserInfo';
+import AllUsers from '../../pages/AllUser';
+
 
 export default () => {
-    const {isAuth} = useContext(UserContext);
-
-   
+    const {isAuth,role} = useContext(UserContext);
+     
     if(isAuth){
         return (
             <Switch>
                 <Route path='/user/createProfile'>
                     <CreateProfilePage/>
                 </Route>
+                {role === 'ADMIN' ? 
+                    <Route path='/user/profiles'>
+                        <AllProfilesPage/>
+                    </Route>
+                :
+                    null
+                }
+                <Route path='/user/userInfo'>
+                    <UserInfo/>
+                </Route>
+                {role === 'ADMIN' ? 
+                    <Route path='/users/allUsers'>
+                        <AllUsers/>
+                    </Route>
+                :
+                    null
+                }
                 <Redirect to='/user/createProfile'/>
             </Switch>
         )
@@ -21,10 +42,13 @@ export default () => {
         return (
             
                 <Switch>
-                    <Route path="/auth">
-                        <Auth/>
+                    <Route path="/auth/reg">
+                        <Register/>
                     </Route>
-                    <Redirect to='/auth' />
+                    <Route path="/auth/log">
+                        <Login/>
+                    </Route>
+                    <Redirect to='/auth/reg' />
                 </Switch>
         )
     }

@@ -18,6 +18,26 @@
     &__btn{
         padding: 5px 10px;
         margin-top: 20px;
-        width: 48%;
+        width: 100%;
+    }
+
+    &__checkbox{
+        margin-top: 20px;
+
+
+        .checkbox__box{
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+        }
+
+        .checkbox__small-box{
+            width: 8px;
+            height: 8px;
+        }
+
+        .checkbox__label{
+            font-size: .6em;
+        }
     }
 }

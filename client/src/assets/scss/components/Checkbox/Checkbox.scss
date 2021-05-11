@@ -1,0 +1,32 @@
+.checkbox{
+    color: $grey-decorated;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+    &:hover{
+        .checkbox__small-box{
+            background-color: $grey-decorated;
+        }
+    }
+    
+    &__box{
+        border: 1px solid $grey-decorated;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__small-box{
+        border: 1px solid $grey-decorated;
+        transition: .3s ease-in-out;
+    }
+
+    &_active{
+        
+            .checkbox__small-box{
+                background-color: $grey-decorated;
+            }
+    }
+}

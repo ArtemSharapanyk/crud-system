@@ -15,6 +15,7 @@
         margin: 0;
         z-index: 100;
         font-size: 1.2rem;
+    
 
         &_hide{
             opacity: 0;
@@ -28,6 +29,7 @@
 
         &__item{
             cursor: pointer;
+            color: $error;
 
             &:hover > a{
                 color: $accent;
@@ -38,6 +40,7 @@
                     color: $accent !important;
                 }
             }
+
 
             a{
                 color: $grey-decorated;

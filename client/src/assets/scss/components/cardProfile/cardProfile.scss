@@ -1,0 +1,122 @@
+.card-wrap{
+    width: 100%;
+    height: 100vh;
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($white, .6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: .4s ease-in-out;
+    z-index: 1000;
+
+    &_active{
+        opacity: 1 !important;
+        pointer-events:all !important;
+    }
+}
+
+.card{
+    width: 100%;
+    padding: 4%;
+    background-color: $white;
+    margin: 0 auto;
+
+    &__property{
+        color: $black;
+    }
+
+    &__value{
+        color: $grey-decorated;
+        text-decoration: underline;
+    }
+
+    .btn_send-data{
+        border-bottom: 2px solid #000;
+        color: #000;
+        padding-bottom: 5px;
+        padding: 5px;
+
+        &:hover{
+            background-color: #000;
+            color: #fff;
+        }
+    }
+
+}
+
+.card_profile-card{
+    margin-top: 20px;
+
+    .card__property{
+        
+    }
+
+    .card__value{
+        margin-top: 10px;
+        margin-left: 4%;
+    }
+
+    .btn_send-data{
+        padding-bottom: 5px;
+        margin-top: 20px;
+        padding: 5px;
+    }
+}
+
+.card_user{
+    margin-top: 20px;
+    
+    .card__property{
+        color: $grey-decorated;
+    }
+    .card__value{
+        background-color: $black;
+        color: $white;
+        padding: 5px;
+        margin-top: 5px;
+    }
+
+    .btn-box{
+        margin-top: 15px;
+    }
+}
+
+.card_profile-update{
+    width: 90%;
+    height: 90%;
+    background-color: $black;
+    overflow-y:scroll;
+
+    .card__input-box{
+        margin-top: 30px;
+    }
+
+    .form-control{
+        border-color: $white;
+        color: darken($color: $white, $amount: 20);
+    }
+
+    textarea{
+        border-color: $white;
+        color: darken($color: $white, $amount: 20);
+    }
+
+    .disable{
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    .btn{
+        color: $white;
+        margin-top: 10px;
+
+        &:hover{
+            background-color: $white;
+            color: $black;
+        }
+    }
+}

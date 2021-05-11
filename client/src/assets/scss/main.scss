@@ -7,15 +7,20 @@
     outline: none;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent !important;
+
+    &::-webkit-scrollbar{
+        width: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $accent;
+    }
 }
 
-body::-webkit-scrollbar{
-    width: 10px;
+textarea{
+    background: transparent;
 }
 
-body::-webkit-scrollbar-thumb {
-    background-color: $accent;
-}
 
 html{
     @include adaptiv-font(40, 25);
@@ -25,6 +30,11 @@ html{
 body{
     background-color: $black;
     color: $white;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
 }
 
 textarea{
@@ -61,12 +71,18 @@ textarea{
 //pages blocks
 @import './components/auth/auth.scss';
 @import './components/createProfile/createProfile.scss';
+@import './components/UserInfo/UserInfo.scss';
+@import './components/AllUsers/AllUsers.scss';
 
 
 //UI
 @import './components/UI/Controller/Controller.scss';
 @import './components/UI/Btn/Btn.scss';
 @import './components/Nav/Nav.scss';
+@import './components/UI/Alert/Alert.scss';
+@import './components/Checkbox/Checkbox.scss';
+@import './components/cardProfile/cardProfile.scss';
+@import './components/UI/Loader/Loader.scss';
 
 
 @import './media.scss';

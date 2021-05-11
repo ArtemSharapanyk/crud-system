@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../../states/userContext';
+
 
 export default () => {
-    const {isAuth} = useSelector(state => state.User);
+    const {isAuth, role} = useSelector(state => state.User);
+
+    const {logout} = useContext(UserContext);
     const [visible, setVisible] = useState(false);
 
     const navCls = [
@@ -29,20 +33,31 @@ export default () => {
                             Create Profile
                         </NavLink>
                     </li>
+                    {role === 'ADMIN' ? 
+                        <li className="list-of-links__item">
+                            <NavLink to='/user/profiles' activeClassName='list-of-links__item_active-link'>
+                                All profiles        
+                            </NavLink>
+                        </li>
+                        :
+                        null
+                    }
                     <li className="list-of-links__item">
-                        <NavLink to='/user/:id/profiles' activeClassName='list-of-links__item_active-link'>
-                            All profiles        
-                        </NavLink>
-                    </li>
-                    <li className="list-of-links__item">
-                        <NavLink to='/user/:id/account' activeClassName='list-of-links__item_active-link'>
+                        <NavLink to='/user/userInfo' activeClassName='list-of-links__item_active-link'>
                             Your account       
                         </NavLink>
                     </li>
-                    <li className="list-of-links__item">
-                        <NavLink to='/users' activeClassName='list-of-links__item_active-link'>
-                            All users        
-                        </NavLink>
+                    {role === 'ADMIN' ? 
+                        <li className="list-of-links__item">
+                            <NavLink to='/users/allUsers' activeClassName='list-of-links__item_active-link'>
+                                All users        
+                            </NavLink>
+                        </li>
+                        :
+                        null
+                    }
+                    <li className="list-of-links__item" onClick={logout}>
+                        Logout            
                     </li>
 
                 </>
@@ -51,8 +66,13 @@ export default () => {
             return (
                 <>
                     <li className="list-of-links__item">
-                        <NavLink to='/auth' activeClassName='list-of-links__item_active'>
-                            Auth
+                        <NavLink to='/auth/reg' activeClassName='list-of-links__item_active'>
+                            Register
+                        </NavLink>
+                    </li>
+                    <li className="list-of-links__item">
+                        <NavLink to='/auth/log' activeClassName='list-of-links__item_active'>
+                            Login
                         </NavLink>
                     </li>
                 </>
@@ -62,8 +82,8 @@ export default () => {
 
 
     return (
-        <nav className="menu">
-            <ul className={navCls.join(' ')}>
+        <nav className="menu" >
+            <ul className={navCls.join(' ')} onClick={toggleMenu}>
                 {renderLinks()}
             </ul>
             <div className={'btn menu-btn'} onClick={toggleMenu}>

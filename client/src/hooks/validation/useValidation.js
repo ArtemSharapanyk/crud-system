@@ -38,8 +38,6 @@ export default (value, validationsRules, baseClasses, dirty, validatedClasses = 
         inputValided = dataAboutValidation[property];  
     });
 
-    console.log(inputValided)
-
     const clsOfInput = [
         ...baseClasses,
         dirty ? 

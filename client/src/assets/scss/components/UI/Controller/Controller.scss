@@ -6,13 +6,13 @@
     color: $grey-decorated;
 
     &_bad-validation{
-        border-bottom-color: $error;
-        color: $error;
+        border-color: $error !important;
+        color: $error !important;
     }
 
     &_successes-validation{
-        border-bottom-color: $successes;
-        color: $successes;
+        border-bottom-color: $successes !important;
+        color: $successes !important;
     }
 }
 
@@ -25,12 +25,13 @@
     font-size: 0.7rem;
 
     &_successes-validation{
-        border-color: $successes;
-        color: $successes;
+        border-color: $successes !important;
+        color: $successes !important;
     }
 
     &_bad-validation{
-        border-color: $error;
-        color: $error;
+        border-color: $error !important;
+        color: $error !important;
+
     }
 }

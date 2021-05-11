@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Btn from '../components/Btn/Btn';
 import Input from '../components/Controller/Controller';
 import useFormValidator from '../hooks/validation/useFormValidator';
 import useInputValidator from '../hooks/validation/useInputValidator';
 import useValidation from '../hooks/validation/useValidation';
+import { UserContext } from '../states/userContext';
+
 
 
 export default () => {
+    const {createProfile} = useContext(UserContext);
+
     const clsOfInputs = [
         'form-control',
         'auth-section__input',
@@ -31,6 +35,12 @@ export default () => {
     
     const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided);
 
+    const objectData = {
+        name:profileNameValue,
+        typeOfWork: typeOfWorkValue,
+        goals: goalsValue,
+        minds: yourMindsValue
+    };
 
     return (
         <section className="page create-profile-section">
@@ -44,7 +54,7 @@ export default () => {
                 <Input typeOfControl={'textarea'}value={yourMindsValue} changeValue={onChangeYourMinds} onBlur={onBlurYourMinds}  classes={yourMindsCls}  placeholder='Your minds' />
             </div>
             <div className="wrapper">
-                <Btn classes="btn btn_large btn_send-data create-profile-section__btn" disabled={!formValided}>
+                <Btn classes="btn btn_large btn_send-data create-profile-section__btn" onClick={createProfile.bind(this, objectData)} disabled={!formValided}>
                     Create
                 </Btn>
             </div>

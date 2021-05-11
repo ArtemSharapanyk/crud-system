@@ -3,6 +3,8 @@ import express from 'express';
 import config from 'config';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import userRouter from './routes/User/UserRouter.js';
+
 
 const PORT = config.get('port') || 3000;
 const URL_DATABASE = config.get('mongoUrl');
@@ -13,8 +15,8 @@ app.use(cors());
 
 app.use(express.json({ extended: true }));
 
-app.use('/api',authRouter)
-
+app.use('/auth',authRouter);
+app.use('/user', userRouter)
 
 const startServer = async () => {
     try{

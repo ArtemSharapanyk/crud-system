@@ -1,0 +1,35 @@
+.alert{
+    width: 35%;
+    padding: 5px;
+    padding-bottom: 10px;
+    min-height: 15vh;
+    transition: .4s ease-in-out;
+    color: $grey-decorated;
+    background-color: $white;
+    border: 1px solid $black;
+    position: fixed;
+    z-index: 10000;
+    bottom: -100%;
+    left: 5%;
+
+    &_active{
+        bottom: 5%;
+    }
+
+    &__message{
+        margin-top: 10px;
+        font-size: .7em;
+    }
+
+    &_error{
+        .alert__title{
+            color: $error;
+        }
+    }
+
+    &_success{
+        .alert__title{
+            color: $successes;
+        }
+    }
+}

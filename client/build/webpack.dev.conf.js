@@ -13,13 +13,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       errors: true
     },
     historyApiFallback: true,
-    proxy: [{
-      context: '/api',
-      target: 'http://localhost:5000/',
-      pathRewrite: {
-          '^/api' : '/'
-      }
-  }]
+    proxy: {
+      '/api': 'http://localhost:5000/api/'
+    }
   },
   plugins: [
 

@@ -1,10 +1,32 @@
-import React, {useState } from 'react'
+import React, {useState, useEffect, useContext } from 'react'
+import { AlertContext } from '../../states/Context/AlertContext';
+import { HttpContext } from './HttpContext';
 
 
-export default () => {
+export default ({children}) => {
     const [load, setLoad] = useState(false);
     const [errorMessage, setError] = useState(null);
     const [successesMessage, setMessage] = useState(null);
+
+    const {toggleAlert} = useContext(AlertContext);
+
+    const switchMessage = (message,cal, type = 'error') => {
+        toggleAlert(2000, message, type);
+        cal();
+    };
+
+
+    useEffect(() => {
+        if(successesMessage){
+            switchMessage(successesMessage, cleanMessages, 'success')
+        }
+    }, [successesMessage]);
+
+    useEffect(() => {
+        if(errorMessage){
+            switchMessage(errorMessage, cleanMessages);
+        }
+    }, [errorMessage]);
 
 
     const request = async (url,method = 'GET', body = null, headers = {}) => {
@@ -43,7 +65,11 @@ export default () => {
     };
 
 
-    return {
-        request, load, successesMessage, errorMessage, cleanMessages,
-    }
+    return (
+        <HttpContext.Provider value={{
+            request, load, successesMessage, errorMessage, cleanMessages,
+        }}>
+            {children}
+        </HttpContext.Provider>
+    )
 };

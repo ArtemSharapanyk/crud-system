@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import Card from '../components/Card/Card'
-import { UserContext } from '../states/userContext';
+import { UserContext } from '../states/Context/userContext';
 import Loader from '../components/Loader/Loader';
 import Btn from '../components/Btn/Btn';
+import { HttpContext } from '../hooks/useHttp/HttpContext';
 
 export default () => {
-    const {userInfo, getUserData,load} = useContext(UserContext); 
+    const {userInfo, getUserData} = useContext(UserContext); 
+    const {load} = useContext(HttpContext);
 
     useEffect(() => {
         getUserData();

@@ -15,10 +15,11 @@ userRouter.get('/getInfo', authMiddleware, controller.getUserInfo);
 userRouter.get('/role',authMiddleware, controller.getUserRole);
 userRouter.post('/updateProfile', async (req, res) => {
     try{
-        const {name, typeOfWork, goals, minds, id} = req.body;
+        const {name, typeOfWork, goals, minds, id ,age} = req.body;
+
         
         const profile = await Profile.findByIdAndUpdate(id, {
-            name, typeOfWork, goals, minds
+            name, typeOfWork, goals, minds, age: +age
         });
 
         await profile.save();
@@ -28,6 +29,7 @@ userRouter.post('/updateProfile', async (req, res) => {
         });
         
     }catch(e){
+        console.log(e)
         res.status(400).json({message: 'Something went bad'})
     }
 });

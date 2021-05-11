@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
-import { UserContext } from '../states/userContext';
+import { HttpContext } from '../hooks/useHttp/HttpContext';
+import { UserContext } from '../states/Context/userContext';
 
 export default () => {
-    const {getProfiles, profiles, load, deleteProfile} = useContext(UserContext);
+    const {getProfiles, profiles, deleteProfile} = useContext(UserContext);
     const [updateCardVisible, setUpdateCardVisible] = useState(false);
     const [cardData,updateData] = useState(null);
+
+    const {load} = useContext(HttpContext);
 
         useEffect(() => {
             getProfiles()
@@ -58,7 +61,7 @@ export default () => {
            <h2 className="page__title">
                 All your profiles
             </h2>
-           <ul className="all-profile-page__profilea-list grid">
+           <ul className="all-profile-page__profilea-list">
                 {renderElements()}
            </ul>
            <Card type={'profile-update-card'} cardState={updateCardVisible} cardData={cardData} closeCardFunc={closeUpdateCard}>

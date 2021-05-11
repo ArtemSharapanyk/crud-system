@@ -65,6 +65,12 @@ textarea{
     }
 }
 
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
 
 
 
@@ -73,6 +79,7 @@ textarea{
 @import './components/createProfile/createProfile.scss';
 @import './components/UserInfo/UserInfo.scss';
 @import './components/AllUsers/AllUsers.scss';
+@import './components/Dashboard/Dashboard.scss';
 
 
 //UI

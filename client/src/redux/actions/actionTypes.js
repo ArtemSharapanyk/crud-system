@@ -5,3 +5,6 @@ export const PULL_USER_INFORMATION = 'PULL_USER_INFORMATION';
 export const PULL_USER_ROLE        = 'PULL_USER_ROLE';
 export const PULL_ALL_USERS        = 'PULL_ALL_USERS';
 export const PULL_USER_PROFILES    = 'PULL_USER_PROFILES';
+
+//dashboard
+export const PULL_DASHBOARD_INFO   = 'PULL_DASHBOARD_INFO';

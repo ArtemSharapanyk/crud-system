@@ -4,12 +4,12 @@ import User from "../../models/User.js";
 export  class UserController{
     async createProfile(req,res){
         try{
-            const {name, typeOfWork, goals, minds} = req.body;
+            const {name, typeOfWork, goals, minds, age} = req.body;
     
             const ownerOfProfile = req.user.username;
             
             const profile = await Profile.create({
-                name, typeOfWork,goals, minds, owner: ownerOfProfile
+                name, typeOfWork,goals, minds, owner: ownerOfProfile, age: +age
             });
     
             await profile.save();
@@ -30,9 +30,9 @@ export  class UserController{
                 });
             }
     
-            const newProfileArray = profiles.map(({name, typeOfWork, goals, minds, id}) => {
+            const newProfileArray = profiles.map(({name, typeOfWork, goals, minds, id, age}) => {
                 return {
-                    name, typeOfWork, goals, minds, id
+                    name, typeOfWork, goals, minds, id, age
                 }
             });
     

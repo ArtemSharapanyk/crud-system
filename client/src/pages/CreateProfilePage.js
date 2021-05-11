@@ -4,7 +4,7 @@ import Input from '../components/Controller/Controller';
 import useFormValidator from '../hooks/validation/useFormValidator';
 import useInputValidator from '../hooks/validation/useInputValidator';
 import useValidation from '../hooks/validation/useValidation';
-import { UserContext } from '../states/userContext';
+import { UserContext } from '../states/Context/userContext';
 
 
 
@@ -24,6 +24,9 @@ export default () => {
     const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator();
     const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator();
 
+    const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator();
+
+
     const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);
     const {inputValided: typeOfWorkValided, clsOfInput:typeOfWorkCls } = useValidation(typeOfWorkValue, {minLength: 6}, clsOfInputs, typeOfWorkDirty);
     
@@ -32,14 +35,17 @@ export default () => {
         error: 'message-block_bad-validation',
         successes: 'message-block_successes-validation'
     });
+
+    const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 0, isNumber: true}, clsOfInputs, ageDirty);
     
-    const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided);
+    const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided);
 
     const objectData = {
         name:profileNameValue,
         typeOfWork: typeOfWorkValue,
         goals: goalsValue,
-        minds: yourMindsValue
+        minds: yourMindsValue,
+        age: ageValue
     };
 
     return (
@@ -51,7 +57,8 @@ export default () => {
                 <Input value={profileNameValue} changeValue={onChangeProfileName} onBlur={onBlurProfileName} classes={profileNameCls} placeholder='Profile name' />
                 <Input value={typeOfWorkValue} changeValue={onChangeTypeOfWork} onBlur={onBlurTypeOfWork} classes={typeOfWorkCls} placeholder='Type of work' />
                 <Input value={goalsValue} changeValue={onChangeGoals} onBlur={onBlurGoals}  classes={goalsCls} placeholder='Goals' />
-                <Input typeOfControl={'textarea'}value={yourMindsValue} changeValue={onChangeYourMinds} onBlur={onBlurYourMinds}  classes={yourMindsCls}  placeholder='Your minds' />
+                <Input value={ageValue} changeValue={onChangeAge} onBlur={onBlurAge}  classes={ageCls} placeholder='Age' />
+                <Input typeOfControl={'textarea'} value={yourMindsValue} changeValue={onChangeYourMinds} onBlur={onBlurYourMinds}  classes={yourMindsCls}  placeholder='Your minds' />
             </div>
             <div className="wrapper">
                 <Btn classes="btn btn_large btn_send-data create-profile-section__btn" onClick={createProfile.bind(this, objectData)} disabled={!formValided}>

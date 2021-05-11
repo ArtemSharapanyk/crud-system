@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { UserContext } from '../../states/userContext';
+import { UserContext } from '../../states/Context/userContext';
 import {Switch, Route,Redirect} from 'react-router-dom';
 import CreateProfilePage from '../../pages/CreateProfilePage';
 import Register from '../../pages/Register';
@@ -7,6 +7,8 @@ import Login from '../../pages/Login';
 import AllProfilesPage from '../../pages/AllProfilesPage';
 import UserInfo from '../../pages/UserInfo';
 import AllUsers from '../../pages/AllUser';
+import Dashboard from '../../pages/Dashboard';
+
 
 
 export default () => {
@@ -34,6 +36,14 @@ export default () => {
                     </Route>
                 :
                     null
+                }
+
+                {role === 'ADMIN' ?
+                    <Route path='/dashboard'>
+                        <Dashboard/>
+                    </Route>
+                    :
+                        null
                 }
                 <Redirect to='/user/createProfile'/>
             </Switch>

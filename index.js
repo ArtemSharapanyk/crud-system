@@ -4,6 +4,7 @@ import config from 'config';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRouter from './routes/User/UserRouter.js';
+import dashboardRouter from './routes/Dashboard/DashboardRouter.js';
 
 
 const PORT = config.get('port') || 3000;
@@ -16,7 +17,8 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 
 app.use('/auth',authRouter);
-app.use('/user', userRouter)
+app.use('/user', userRouter);
+app.use('/dashboard', dashboardRouter);
 
 const startServer = async () => {
     try{

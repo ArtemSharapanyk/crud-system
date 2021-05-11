@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AlertContext } from '../../states/AlertContext';
+import { AlertContext } from '../../states/Context/AlertContext';
 
 
 export default () => {

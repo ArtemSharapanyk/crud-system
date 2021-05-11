@@ -4,22 +4,28 @@ import                                        './assets/scss/main.scss';
 import Alert from './components/Alert/Alert';
 import Nav from './components/Nav/Nav';
 import PageConatiner from './components/PageContainer/PageConatiner';
+import UseHttp from './hooks/useHttp/useHttp';
 import AlertState from './states/Alert/AlertState';
-import UserState from './states/user/UserState';
+import DashboardState from './states/Dashboard/DashboardState';
+import UserState from './states/User/UserState';
 
 export default () => {
     return (
         <BrowserRouter>
             <AlertState>
-                <UserState>
-                    <Alert/>
-                    <Nav/>
-                    <main className="pages">
-                        <div className="wrapper">
-                            <PageConatiner/>
-                        </div>
-                    </main>
-                </UserState>
+                <UseHttp>
+                    <DashboardState>
+                        <UserState>
+                            <Alert/>
+                            <Nav/>
+                            <main className="pages">
+                                <div className="wrapper">
+                                    <PageConatiner/>
+                                </div>
+                            </main>
+                        </UserState>
+                    </DashboardState>
+                </UseHttp>
             </AlertState>
         </BrowserRouter>
     )

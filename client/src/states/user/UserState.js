@@ -1,143 +1,32 @@
 import React, { useContext, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import useAuthHook from '../../hooks/authHook/useAuthHook';
-import useHttp from '../../hooks/useHttp/useHttp';
-import { LOGIN, PULL_ALL_USERS, PULL_USER_INFORMATION, PULL_USER_PROFILES, PULL_USER_ROLE } from '../../redux/actions/actionTypes';
-import { AlertContext } from '../AlertContext';
-import {UserContext} from '../userContext';
+import { HttpContext } from '../../hooks/useHttp/HttpContext';
+import {PULL_ALL_USERS, PULL_DASHBOARD_INFO, PULL_USER_INFORMATION, PULL_USER_PROFILES, PULL_USER_ROLE } from '../../redux/actions/actionTypes';
+import {UserContext} from '../Context/userContext';
+import useAdmin from '../Logic/useAdmin';
+import useProfile from '../Logic/useProfile';
+import useUser from '../Logic/useUser';
 
 export default ({children}) => {
     const dispatch = useDispatch();
-
-    //data from redux state
+    
     const {isAuth, details, token, role, allUsersArray, profiles} = useSelector(state => state.User);
-    //end data from state
 
-    const {toggleAlert} = useContext(AlertContext);
-    const {request, errorMessage, successesMessage,cleanMessages, load} = useHttp();
-
-    const {loginFrontendSession, logoutFrontendSession} = useAuthHook();
-
-
-    //helper to message switch(alert)
-    const switchMessage = (message,cal, type = 'error') => {
-        toggleAlert(2000, message, type);
-        cal();
-    };
-
-    //message listener, show alertcafter some actions
-
-    useEffect(() => {
-        if(successesMessage){
-            switchMessage(successesMessage, cleanMessages, 'success')
-        }
-    }, [successesMessage]);
-
-
-    useEffect(() => {
-        if(errorMessage){
-            if(errorMessage === 'Token verify is bad'){
-                logoutFrontendSession();
-            }
-            switchMessage(errorMessage, cleanMessages);
-        }
-    }, [errorMessage]);
+    const {errorMessage} = useContext(HttpContext);
 
     //user logic
+    const {loginFrontendSession, logoutFrontendSession} = useAuthHook();
+    const {register, login, logout, getUserData, pullUserRole} = useUser(token,loginFrontendSession, logoutFrontendSession)
 
     const userInfo = details;
     
-    const register = async data => {
-        const res = await request('http://localhost:5000/auth/reg', 'POST', data);
-    };
 
-    const login = async data => {
-        const dataFromServer = await request('http://localhost:5000/auth/log', 'POST', data);
-        
-        if(dataFromServer.res.ok){
-            loginFrontendSession(dataFromServer.data.token)
-        }
-    };
-
-    const logout = () => {
-        logoutFrontendSession()
-    };
-
-    const getUserData = async () => {
-        const response = await request('http://localhost:5000/user/getInfo', 'GET', null, {
-            Authorization: `Bearer ${token}`,
-        });
-
-        if(response.res.ok){
-            dispatch({
-                type: PULL_USER_INFORMATION,
-                payload: response.data
-            });
-        }
-    };
-
-    const pullUserRole = async () => {
-        const response = await request('http://localhost:5000/user/role', 'GET', null, {
-            Authorization: `Bearer ${token}`
-        });
-
-        if(response.res.ok){
-            dispatch({
-                type: PULL_USER_ROLE,
-                payload: response.data.role
-            })
-        }
-    };
-
-    const createProfile = async data => {
-        const response = await request('http://localhost:5000/user/createProfile', 'POST', data, {
-            Authorization: `Bearer ${token}`
-        });
-    };
-
-
-    const getProfiles = async () => {
-        const response = await request('http://localhost:5000/user/getProfiles', 'GET', null, {
-            Authorization: `Bearer ${token}`
-        });
-
-        if(response.res.ok){
-            dispatch({
-                type:PULL_USER_PROFILES,
-                payload: response.data.profiles
-            })
-        }
-    };
-
-    const deleteProfile = async id => {
-        const response = await request('http://localhost:5000/user/deleteProfile', 'POST', {id});
-
-        if(response.res.ok){
-            getProfiles()
-        }
-    };
-
-    const updateProfile = async data => {
-        const response = await request('http://localhost:5000/user/updateProfile', 'POST', data);
-
-        if(response.res.ok){
-            getProfiles()
-        }
-    };
-
-
+    //profile logic
+    const {createProfile,getProfiles,deleteProfile,updateProfile} = useProfile(token);
 
     //admin logic
-    const getAllUsers = async () => {
-        const response = await request('http://localhost:5000/user/getAllUsers', 'GET', null);
-
-        if(response.res.ok){
-            dispatch({
-                type: PULL_ALL_USERS, 
-                payload: response.data.users
-            });
-        }
-    };
+    const {getAllUsers} = useAdmin();
 
 
 
@@ -149,14 +38,25 @@ export default ({children}) => {
     }, [token]);
 
 
+    //end session when token is not avaible 
+    useEffect(() => {
+        if(errorMessage){
+            if(errorMessage === 'Token verify is bad'){
+                logoutFrontendSession();
+            }
+        }
+    }, [errorMessage]);
+
+
+
 
     return (
         <UserContext.Provider value = {{
             isAuth,register, login, logout,
-            getUserData, load,userInfo, role,
+            getUserData,userInfo, role,
             getAllUsers, allUsersArray,createProfile,
             getProfiles, profiles,deleteProfile,
-            updateProfile
+            updateProfile,
         }}>
             {children}
         </UserContext.Provider>

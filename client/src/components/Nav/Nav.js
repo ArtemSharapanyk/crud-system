@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import {useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../states/userContext';
+import { UserContext } from '../../states/Context/userContext';
 
 
 export default () => {
@@ -51,6 +51,15 @@ export default () => {
                         <li className="list-of-links__item">
                             <NavLink to='/users/allUsers' activeClassName='list-of-links__item_active-link'>
                                 All users        
+                            </NavLink>
+                        </li>
+                        :
+                        null
+                    }
+                    {role === 'ADMIN' ? 
+                        <li className="list-of-links__item">
+                            <NavLink to='/dashboard' activeClassName='list-of-links__item_active-link'>
+                                Dashboard   
                             </NavLink>
                         </li>
                         :

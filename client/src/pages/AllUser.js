@@ -2,11 +2,14 @@ import React, { useContext, useEffect } from 'react'
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
-import { UserContext } from '../states/userContext';
+import { HttpContext } from '../hooks/useHttp/HttpContext';
+import { UserContext } from '../states/Context/userContext';
 
 
 export default () => {
-    const {allUsersArray, getAllUsers,load} = useContext(UserContext);
+    const {allUsersArray, getAllUsers} = useContext(UserContext);
+
+    const {load} = useContext(HttpContext);
 
     useEffect(() => {
         getAllUsers()
@@ -22,7 +25,7 @@ export default () => {
                 return 'Array is empty'
             }else{
                 return allUsersArray.map(item => {
-                    return <Card type={'user-card-list'} key={item.username + 'user card'} cardData={item}>
+                    return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
                         <Btn classes={'btn btn_send-data'}>
                             Delete
                         </Btn>
@@ -44,7 +47,7 @@ export default () => {
             <div className="page__title">
                 All users
             </div>
-            <ul className="grid all-users-section__list-of-users">
+            <ul className="all-users-section__list-of-users">
                 {renderItems()}
             </ul>
         </section>

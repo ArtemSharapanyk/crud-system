@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import useFormValidator from '../../hooks/validation/useFormValidator';
 import useInputValidator from '../../hooks/validation/useInputValidator';
 import useValidation from '../../hooks/validation/useValidation';
-import { UserContext } from '../../states/userContext';
+import { UserContext } from '../../states/Context/userContext';
 import Btn from '../Btn/Btn';
 import Input from '../Controller/Controller';
 
 export default ({type = 'profile-card', classes,cardData, children,cardState, closeCardFunc}) => {
     if(type === 'profile-card' ){
-        const {name, typeOfWork, goals, minds} = cardData;
+        const {name, typeOfWork, goals, minds, age} = cardData;
         return (
             <li className={["card card_profile-card", classes ? classes : ''].join(' ')}>
                     <div className="card__name card__property">
@@ -27,6 +27,12 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                         Goals:
                         <div className="card__value">
                             {goals}
+                        </div>
+                    </div>
+                    <div className="card__minds card__property">
+                        Age:
+                        <div className="card__value">
+                            {age}
                         </div>
                     </div>
                     <div className="card__minds card__property">
@@ -132,8 +138,13 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
         const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator();
         const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator();
     
+        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator();
+
+
         const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);
         const {inputValided: typeOfWorkValided, clsOfInput:typeOfWorkCls } = useValidation(typeOfWorkValue, {minLength: 6}, clsOfInputs, typeOfWorkDirty);
+        const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 0, isNumber: true}, clsOfInputs,ageDirty);
+    
         
         const {inputValided: goalsValided, clsOfInput: goalsCls} = useValidation(goalsValue, {minLength: 6}, clsOfInputs,goalsDirty);
         const {inputValided: yourMindsValided, clsOfInput:yourMindsCls } = useValidation(yourMindsValue, {minLength: 20}, clsOfTextArea, yourMindsDirty,{
@@ -143,13 +154,14 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
 
         const data = {
             name: profileNameValue,
-            typyOfWork: typeOfWorkValue,
+            typeOfWork: typeOfWorkValue,
             goals: goalsValue,
             minds: yourMindsValue,
-            id
+            id,
+            age: ageValue
         };
         
-        const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided);
+        const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided);
     
 
         return (
@@ -162,6 +174,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                         <Input value={profileNameValue} changeValue={onChangeProfileName} onBlur={onBlurProfileName} classes={profileNameCls} placeholder='Profile name' />
                         <Input value={typeOfWorkValue} changeValue={onChangeTypeOfWork} onBlur={onBlurTypeOfWork} classes={typeOfWorkCls} placeholder='Type of work' />
                         <Input value={goalsValue} changeValue={onChangeGoals} onBlur={onBlurGoals}  classes={goalsCls} placeholder='Goals' />
+                        <Input value={ageValue} changeValue={onChangeAge} onBlur={onBlurAge}  classes={ageCls} placeholder='Age' />
                         <Input typeOfControl={'textarea'}value={yourMindsValue} changeValue={onChangeYourMinds} onBlur={onBlurYourMinds}  classes={yourMindsCls}  placeholder='Your minds' />
                     </div>
                     <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>

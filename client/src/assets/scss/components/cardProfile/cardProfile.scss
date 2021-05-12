@@ -4,7 +4,7 @@
     position:fixed;
     top: 0;
     left: 0;
-    background-color: rgba($white, .6);
+    background-color: $white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +32,10 @@
     &__value{
         color: $grey-decorated;
         text-decoration: underline;
+    }
+
+    &__btn_close{
+        cursor: pointer;
     }
 
     .btn_send-data{
@@ -85,11 +89,12 @@
     }
 }
 
-.card_profile-update{
+.card_update{
     width: 90%;
     height: 90%;
     background-color: $black;
     overflow-y:scroll;
+
 
     .card__input-box{
         margin-top: 30px;
@@ -118,5 +123,11 @@
             background-color: $white;
             color: $black;
         }
+    }
+}
+
+.card_user-update{
+    .card__btn{
+        margin-top: 20px;
     }
 }

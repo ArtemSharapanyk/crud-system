@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import useFormValidator from '../../hooks/validation/useFormValidator';
 import useInputValidator from '../../hooks/validation/useInputValidator';
 import useValidation from '../../hooks/validation/useValidation';
@@ -98,15 +98,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                     </div>
                     <div className="card__btn" >
                         <div className="btn-box">
-                            <Btn classes={'btn btn_send-data'}>
-                                Update
-                            </Btn>
-                            <Btn classes={'btn btn_send-data'}>
-                                Profiles
-                            </Btn>
-                            <Btn classes={'btn btn_send-data'}>
-                                Delete
-                            </Btn>
+                            {children}
                         </div>
                     </div>
                 </div>
@@ -162,11 +154,16 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
         };
         
         const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided);
+
+        const update = () => {
+            updateProfile(data);
+            closeCardFunc(false);
+        };
     
 
         return (
             <div className={cls.join(' ')}>
-                <div className={['card card_profile-update', classes ? classes : ''].join(' ')}>
+                <div className={['card card_update card_profile-update', classes ? classes : ''].join(' ')}>
                     <div className="card__btn card__btn_close" onClick={closeCardFunc}>
                         close
                     </div>
@@ -179,7 +176,130 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                     </div>
                     <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
                         <div className="btn-box">
-                            <Btn classes={'btn btn_send-data'} onClick={updateProfile.bind(this, data)}>
+                            <Btn classes={'btn btn_send-data'} onClick={update}>
+                                Update
+                            </Btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if(type === 'user-update-card'){
+        const {updateUserInfo} = useContext(UserContext);
+
+        const cls = [
+            'card-wrap',
+            cardState ? 'card-wrap_active' : ''
+        ];
+
+
+        const clsOfInputs = [
+            'form-control',
+            'auth-section__input',
+        ];
+    
+        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
+        const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
+        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+
+
+        const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
+        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
+        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(userNameValue, {minLength: 4}, clsOfInputs,userNameDirty);
+
+        const formValided = useFormValidator(emailValided, passwordValided, userNameValided);
+
+
+        const data = {
+            username: userNameValue, 
+            password: passwordValue,
+            email: emailValue
+        };
+
+
+        const update = () => {
+            updateUserInfo(data);
+            closeCardFunc(false);
+        };
+
+        return (
+            <div className={cls.join(' ')}>
+                <div className={['card card_update card_user-update', classes ? classes : ''].join(' ')}>
+                    <div className="card__btn card__btn_close" onClick={closeCardFunc}>
+                        close
+                    </div>
+                    <div className="card__input-box">
+                        <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
+                        <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
+                        <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
+                    </div>
+                    <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
+                        <div className="btn-box">
+                            <Btn classes={'btn btn_send-data'} onClick={update}>
+                                Update
+                            </Btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if(type === 'user-update-card-admin'){
+        const {updateUserInfoAdmin} = useContext(UserContext);
+    
+        const id = cardData ? cardData : '';
+
+        const cls = [
+            'card-wrap',
+            cardState ? 'card-wrap_active' : ''
+        ];
+
+
+        const clsOfInputs = [
+            'form-control',
+            'auth-section__input',
+        ];
+    
+        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
+        const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
+        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+
+
+        const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
+        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
+        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(userNameValue, {minLength: 4}, clsOfInputs,userNameDirty);
+
+        const formValided = useFormValidator(emailValided, passwordValided, userNameValided);
+
+
+        const data = {
+            username: userNameValue, 
+            password: passwordValue,
+            email: emailValue
+        };
+
+        const update = () => {
+            updateUserInfoAdmin(id, data);
+            closeCardFunc(false);
+        };
+
+        return (
+            <div className={cls.join(' ')}>
+                <div className={['card card_update card_user-update', classes ? classes : ''].join(' ')}>
+                    <div className="card__btn card__btn_close" onClick={closeCardFunc}>
+                        close
+                    </div>
+                    <div className="card__input-box">
+                        <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
+                        <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
+                        <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
+                    </div>
+                    <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
+                        <div className="btn-box">
+                            <Btn classes={'btn btn_send-data'} onClick={update}>
                                 Update
                             </Btn>
                         </div>

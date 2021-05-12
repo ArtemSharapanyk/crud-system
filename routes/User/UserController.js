@@ -1,3 +1,4 @@
+import { hash } from "bcrypt";
 import Profile from "../../models/Profile.js";
 import User from "../../models/User.js";
 
@@ -6,7 +7,7 @@ export  class UserController{
         try{
             const {name, typeOfWork, goals, minds, age} = req.body;
     
-            const ownerOfProfile = req.user.username;
+            const ownerOfProfile = req.user.userId;
             
             const profile = await Profile.create({
                 name, typeOfWork,goals, minds, owner: ownerOfProfile, age: +age
@@ -22,7 +23,7 @@ export  class UserController{
 
     async getUserProfiles(req,res){
         try{
-            const profiles = await Profile.find({owner: req.user.username});
+            const profiles = await Profile.find({owner: req.user.userId});
     
             if(!profiles.length){
                 return res.json({
@@ -61,9 +62,30 @@ export  class UserController{
         }
     }
 
+    async updateProfile(req, res){
+        try{
+            const {name, typeOfWork, goals, minds, id ,age} = req.body;
+    
+            
+            const profile = await Profile.findByIdAndUpdate(id, {
+                name, typeOfWork, goals, minds, age: +age
+            });
+    
+            await profile.save();
+    
+            res.json({
+                message: 'Profile has been changed'
+            });
+            
+        }catch(e){
+            console.log(e)
+            res.status(400).json({message: 'Something went bad'})
+        }
+    }
+
     async getUserInfo(req,res){
         try{
-            const user = await User.findOne({username: req.user.username });
+            const user = await User.findById(req.user.userId);
     
             if(!user){
                 return res.status(400),json({
@@ -75,7 +97,8 @@ export  class UserController{
             res.json({
                 email: user.email,
                 username: user.username,
-            })
+                id: req.user.id
+            });
         }catch(e){
             res.status(400).json({
                 message: e.message
@@ -103,8 +126,8 @@ export  class UserController{
                 })
             }
     
-            const newUsersArray = users.map(({role, username, email}) => ({
-                role, username, email
+            const newUsersArray = users.map(({role, username, email,id}) => ({
+                role, username, email, id
             }));
     
             
@@ -115,6 +138,50 @@ export  class UserController{
             res.status(400).json({
                 message: 'Bad user getting'
             })
+        }
+    }
+
+    async updateUserInfo(req,res){
+        try{
+            const {username, email, password} = req.body;
+    
+            const hashedPassword = await hash(password, 12);
+        
+            const user = await User.findByIdAndUpdate(req.user.userId, {
+                username, email,password: hashedPassword
+            });
+    
+    
+    
+            await user.save();
+    
+            res.json({
+                message: 'User successfully changed'
+            });
+        }catch(e){
+            console.log(e);
+            res.status(400).json({
+                message: 'Update was failded'
+            });
+        }
+    }
+
+    async deleteUser(req, res){
+        try{
+            const {id} = req.body;
+    
+    
+            const user = await User.findByIdAndDelete(id);
+    
+            user.save();
+    
+            res.json({
+                message: 'User has deleted'
+            });
+        }catch(e){
+            res.status(400).json({
+                message: `User hasn't deleted`
+            });
         }
     }
 }

@@ -73,7 +73,6 @@ export default class authController{
             const token = generateToken({
                 userId: candidate._id,
                 userRole: candidate.role, 
-                username
             });
     
             res.json({

@@ -18,8 +18,24 @@ export default () => {
         }
     };
 
+    const deleteUser = async id => {
+        const response = await request('http://localhost:5000/user/deleteUser', 'POST', {id});
+    
+        if(response.res.ok){
+            getAllUsers();
+        }
+    };
+
+    const updateUserInfoAdmin = async (id, data) => {
+        const response = await request('http://localhost:5000/user/updateUser', 'POST', {id, data});
+
+        if(response.res.ok){
+            getAllUsers();
+        }
+    };
+ 
     return {
-        getAllUsers
+        getAllUsers, deleteUser, updateUserInfoAdmin
     }
 
 }

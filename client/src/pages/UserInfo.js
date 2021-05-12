@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '../components/Card/Card'
 import { UserContext } from '../states/Context/userContext';
 import Loader from '../components/Loader/Loader';
@@ -8,6 +8,8 @@ import { HttpContext } from '../hooks/useHttp/HttpContext';
 export default () => {
     const {userInfo, getUserData} = useContext(UserContext); 
     const {load} = useContext(HttpContext);
+
+    const [updateCardState, setStateOfUpdateCard] = useState(false);
 
     useEffect(() => {
         getUserData();
@@ -24,9 +26,13 @@ export default () => {
             </h2>
            <div className="content">
                <Card type={'user-card'} cardData={userInfo ? userInfo : {username: null, email:null}} classes={'user-info-section__card'}>
-                    <Btn classes={'btn btn_send-data btn_large'}>
+                    <Btn classes={'btn btn_send-data btn_large'} onClick={setStateOfUpdateCard.bind(this,true)}>
                         Update
                     </Btn>
+               </Card>
+
+               <Card cardState={updateCardState} type={'user-update-card'} closeCardFunc={setStateOfUpdateCard.bind(this, false)}>
+
                </Card>
            </div>
         </section>

@@ -50,8 +50,18 @@ export default (token, loginFrontend, logoutFrontend) => {
         }
     };
 
+    const updateUserInfo = async data => {
+        const response = await request('http://localhost:5000/user/updateUserData', 'POST', data, {
+            Authorization: `Bearer ${token}`
+        });
+
+        if(response.res.ok){
+            getUserData()
+        }
+    };
+
     return {
         register, login, logout,
-        getUserData, pullUserRole,
+        getUserData, pullUserRole,updateUserInfo
     }
 };

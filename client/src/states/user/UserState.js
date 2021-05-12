@@ -17,7 +17,8 @@ export default ({children}) => {
 
     //user logic
     const {loginFrontendSession, logoutFrontendSession} = useAuthHook();
-    const {register, login, logout, getUserData, pullUserRole} = useUser(token,loginFrontendSession, logoutFrontendSession)
+
+    const {register, login, logout, getUserData, pullUserRole, updateUserInfo } = useUser(token,loginFrontendSession, logoutFrontendSession)
 
     const userInfo = details;
     
@@ -26,7 +27,7 @@ export default ({children}) => {
     const {createProfile,getProfiles,deleteProfile,updateProfile} = useProfile(token);
 
     //admin logic
-    const {getAllUsers} = useAdmin();
+    const {getAllUsers,deleteUser,updateUserInfoAdmin} = useAdmin();
 
 
 
@@ -56,7 +57,8 @@ export default ({children}) => {
             getUserData,userInfo, role,
             getAllUsers, allUsersArray,createProfile,
             getProfiles, profiles,deleteProfile,
-            updateProfile,
+            updateProfile,updateUserInfo,deleteUser,
+            updateUserInfoAdmin
         }}>
             {children}
         </UserContext.Provider>

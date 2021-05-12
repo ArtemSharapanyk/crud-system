@@ -1,40 +1,49 @@
+import { hash } from "bcrypt";
 import { Router } from "express";
 import authMiddleware from "../../middleware/authMiddleware.js";
-import Profile from "../../models/Profile.js";
 import User from "../../models/User.js";
 import UserController from "./UserController.js";
-
 
 const controller = new UserController()
 const userRouter = Router();
 
-userRouter.post('/createProfile',authMiddleware, controller.createProfile);
 userRouter.get('/getProfiles',authMiddleware,controller.getUserProfiles);
-userRouter.post('/deleteProfile', controller.deleteProfile);
 userRouter.get('/getInfo', authMiddleware, controller.getUserInfo);
 userRouter.get('/role',authMiddleware, controller.getUserRole);
-userRouter.post('/updateProfile', async (req, res) => {
+userRouter.get('/getAllUsers', controller.getAllUsers);
+
+userRouter.post('/createProfile',authMiddleware, controller.createProfile);
+userRouter.post('/deleteProfile', controller.deleteProfile);
+userRouter.post('/updateProfile', controller.updateProfile);
+userRouter.post('/updateUserData', authMiddleware ,controller.updateUserInfo);
+userRouter.post('/deleteUser', controller.deleteUser);
+userRouter.post('/updateUser', async (req, res) => {
     try{
-        const {name, typeOfWork, goals, minds, id ,age} = req.body;
+        const {id, data} = req.body;
 
-        
-        const profile = await Profile.findByIdAndUpdate(id, {
-            name, typeOfWork, goals, minds, age: +age
-        });
+        const hashedPassword = await hash(data.password, 12);
 
-        await profile.save();
+        const updatedObject = {
+            ...data, 
+            password: hashedPassword
+        };
+
+        console.log(id, data)
+
+        const user = await User.findByIdAndUpdate(id, updatedObject);
+
+        await user.save();
 
         res.json({
-            message: 'Profile has been changed'
+            message: 'User has updated'
         });
-        
     }catch(e){
         console.log(e)
-        res.status(400).json({message: 'Something went bad'})
+
+        res.status(400).json({
+            message: `User hasn't updated`
+        });
     }
 });
-
-
-userRouter.get('/getAllUsers', controller.getAllUsers);
 
 export default userRouter;

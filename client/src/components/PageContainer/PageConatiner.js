@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { UserContext } from '../../states/Context/userContext';
 import {Switch, Route,Redirect} from 'react-router-dom';
 import CreateProfilePage from '../../pages/CreateProfilePage';

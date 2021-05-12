@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
@@ -12,9 +12,9 @@ export default () => {
 
     const {load} = useContext(HttpContext);
 
-        useEffect(() => {
-            getProfiles()
-        }, []);
+    useEffect(() => {
+        getProfiles();
+    }, []);
 
 
     if(load){
@@ -33,7 +33,7 @@ export default () => {
     const renderElements = () => {
         if(profiles){
                 if(!profiles.length){
-                    return 'Profiles is empty'
+                    return 'Profiles is empty';
                 }else{
                     return profiles.map(item => {
                         return (
@@ -64,9 +64,7 @@ export default () => {
            <ul className="all-profile-page__profilea-list">
                 {renderElements()}
            </ul>
-           <Card type={'profile-update-card'} cardState={updateCardVisible} cardData={cardData} closeCardFunc={closeUpdateCard}>
-                
-            </Card>
+           <Card type={'profile-update-card'} cardState={updateCardVisible} cardData={cardData} closeCardFunc={closeUpdateCard}/>
         </section>
     )
 };

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default ({value, changeValue, placeholder, classes, onBlur, type,typeOfControl = 'input'}) => {
 

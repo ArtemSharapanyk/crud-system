@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react'
+import React, {useState, useEffect, useContext } from 'react';
 import { AlertContext } from '../../states/Context/AlertContext';
 import { HttpContext } from './HttpContext';
 
@@ -18,7 +18,7 @@ export default ({children}) => {
 
     useEffect(() => {
         if(successesMessage){
-            switchMessage(successesMessage, cleanMessages, 'success')
+            switchMessage(successesMessage, cleanMessages, 'success');
         }
     }, [successesMessage]);
 

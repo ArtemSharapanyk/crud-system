@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import Btn from '../components/Btn/Btn';
 import Input from '../components/Controller/Controller';
 import useFormValidator from '../hooks/validation/useFormValidator';

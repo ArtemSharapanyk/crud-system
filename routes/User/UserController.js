@@ -141,6 +141,33 @@ export  class UserController{
         }
     }
 
+    async updateUserDataAdmin(req,res){
+        try{
+            const {id, data} = req.body;
+    
+            const hashedPassword = await hash(data.password, 12);
+    
+            const updatedObject = {
+                ...data, 
+                password: hashedPassword
+            };
+    
+            const user = await User.findByIdAndUpdate(id, updatedObject);
+    
+            await user.save();
+    
+            res.json({
+                message: 'User has updated'
+            });
+        }catch(e){
+            console.log(e)
+    
+            res.status(400).json({
+                message: `User hasn't updated`
+            });
+        }
+    }
+
     async updateUserInfo(req,res){
         try{
             const {username, email, password} = req.body;

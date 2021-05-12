@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
-import useAuthHook from "../../hooks/authHook/useAuthHook";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_INFORMATION, PULL_USER_ROLE } from "../../redux/actions/actionTypes";
 

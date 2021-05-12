@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react';
 import Loader from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { DashboardContex } from '../states/Context/DashboardContext';

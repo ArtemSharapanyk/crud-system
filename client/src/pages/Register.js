@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import Btn from '../components/Btn/Btn';
 import Checkbox from '../components/checkBox/Checkbox';
 import Input from '../components/Controller/Controller';

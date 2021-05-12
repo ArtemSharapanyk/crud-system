@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
@@ -24,16 +24,13 @@ export default () => {
     const renderElements = () => {
         if(allUsersArray){
                 if(!allUsersArray.length){
-                    return 'Array is empty'
+                    return 'Array is empty';
                 }else{
                     return allUsersArray.map(item => {
                         console.log(item.id)
                         return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
                             <Btn classes={'btn btn_send-data'} onClick={deleteUser.bind(this, item.id)}>
                                 Delete
-                            </Btn>
-                            <Btn classes={'btn btn_send-data'}>
-                                Profiles
                             </Btn>
                             <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item.id)}>
                                 Update

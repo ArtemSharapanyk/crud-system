@@ -5,9 +5,7 @@ import { UserContext } from '../../states/Context/userContext';
 
 
 export default () => {
-    const {isAuth, role} = useSelector(state => state.User);
-
-    const {logout} = useContext(UserContext);
+    const {logout, isAuth, role} = useContext(UserContext);
     const [visible, setVisible] = useState(false);
 
     const navCls = [

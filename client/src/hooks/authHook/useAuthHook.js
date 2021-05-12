@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { LOGIN, LOG_OUT } from "../../redux/actions/actionTypes";
 
 let userTokenProperty = 'userToken';

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { AlertContext } from '../../states/Context/AlertContext';
 
 
@@ -7,7 +7,7 @@ export default () => {
     const cls = [
         `alert alert_${type}`,
         visible ? 'alert_active' : ''
-    ]
+    ];
 
     return (
             <div className={cls.join(' ')}>

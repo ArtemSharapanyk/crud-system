@@ -2,15 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import useAuthHook from '../../hooks/authHook/useAuthHook';
 import { HttpContext } from '../../hooks/useHttp/HttpContext';
-import {PULL_ALL_USERS, PULL_DASHBOARD_INFO, PULL_USER_INFORMATION, PULL_USER_PROFILES, PULL_USER_ROLE } from '../../redux/actions/actionTypes';
 import {UserContext} from '../Context/userContext';
 import useAdmin from '../Logic/useAdmin';
 import useProfile from '../Logic/useProfile';
 import useUser from '../Logic/useUser';
 
 export default ({children}) => {
-    const dispatch = useDispatch();
-    
     const {isAuth, details, token, role, allUsersArray, profiles} = useSelector(state => state.User);
 
     const {errorMessage} = useContext(HttpContext);
@@ -18,7 +15,7 @@ export default ({children}) => {
     //user logic
     const {loginFrontendSession, logoutFrontendSession} = useAuthHook();
 
-    const {register, login, logout, getUserData, pullUserRole, updateUserInfo } = useUser(token,loginFrontendSession, logoutFrontendSession)
+    const {register, login, logout, getUserData, pullUserRole, updateUserInfo } = useUser(token,loginFrontendSession, logoutFrontendSession);
 
     const userInfo = details;
     

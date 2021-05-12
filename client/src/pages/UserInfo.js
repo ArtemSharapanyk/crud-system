@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Card from '../components/Card/Card'
+import React, { useContext, useEffect, useState } from 'react';
+import Card from '../components/Card/Card';
 import { UserContext } from '../states/Context/userContext';
 import Loader from '../components/Loader/Loader';
 import Btn from '../components/Btn/Btn';
@@ -31,9 +31,7 @@ export default () => {
                     </Btn>
                </Card>
 
-               <Card cardState={updateCardState} type={'user-update-card'} closeCardFunc={setStateOfUpdateCard.bind(this, false)}>
-
-               </Card>
+               <Card cardState={updateCardState} type={'user-update-card'} closeCardFunc={setStateOfUpdateCard.bind(this, false)} />
            </div>
         </section>
     )

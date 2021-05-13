@@ -135,7 +135,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
 
         const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);
         const {inputValided: typeOfWorkValided, clsOfInput:typeOfWorkCls } = useValidation(typeOfWorkValue, {minLength: 6}, clsOfInputs, typeOfWorkDirty);
-        const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 0, isNumber: true}, clsOfInputs,ageDirty);
+        const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 1, isNumber: true}, clsOfInputs,ageDirty);
     
         
         const {inputValided: goalsValided, clsOfInput: goalsCls} = useValidation(goalsValue, {minLength: 6}, clsOfInputs,goalsDirty);

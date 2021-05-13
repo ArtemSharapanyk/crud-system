@@ -11,7 +11,7 @@ export default (value, validationsRules, baseClasses, dirty, validatedClasses = 
     const [isNumber, setIsNumber] = useState(false); 
 
 
-    let inputValided = false;
+    let inputValided = true;
 
     useEffect(() => {
         for(let validationRule in validationsRules){
@@ -21,7 +21,7 @@ export default (value, validationsRules, baseClasses, dirty, validatedClasses = 
                         .test(valueOfInput) ? setEmail(true) : setEmail(false)
                     break;
                 case 'minLength':
-                    valueOfInput.length > validationsRules[validationRule] ? setMinLength(true) : setMinLength(false) 
+                    valueOfInput.length >= validationsRules[validationRule] ? setMinLength(true) : setMinLength(false) 
                     break;
                 case 'isNumber':
                     !isNaN(+valueOfInput) ? setIsNumber(true) : setIsNumber(false) 
@@ -35,7 +35,7 @@ export default (value, validationsRules, baseClasses, dirty, validatedClasses = 
     };
 
     Object.keys(validationsRules).forEach(property => {
-        inputValided = dataAboutValidation[property];  
+        inputValided =  inputValided && dataAboutValidation[property];  
     });
 
     const clsOfInput = [

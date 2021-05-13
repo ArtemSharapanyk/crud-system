@@ -36,7 +36,7 @@ export default () => {
         successes: 'message-block_successes-validation'
     });
 
-    const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 0, isNumber: true}, clsOfInputs, ageDirty);
+    const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 1, isNumber: true}, clsOfInputs, ageDirty);
     
     const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided);
 

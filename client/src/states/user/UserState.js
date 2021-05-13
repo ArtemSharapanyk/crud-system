@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import useAuthHook from '../../hooks/authHook/useAuthHook';
 import { HttpContext } from '../../hooks/useHttp/HttpContext';
 import {UserContext} from '../Context/userContext';

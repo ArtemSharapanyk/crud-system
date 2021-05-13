@@ -24,7 +24,7 @@ export default ({children}) => {
     const {createProfile,getProfiles,deleteProfile,updateProfile} = useProfile(token);
 
     //admin logic
-    const {getAllUsers,deleteUser,updateUserInfoAdmin} = useAdmin();
+    const {getAllUsers,deleteUser,updateUserInfoAdmin} = useAdmin(token, logoutFrontendSession);
 
 
 

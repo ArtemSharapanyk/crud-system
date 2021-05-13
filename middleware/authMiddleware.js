@@ -16,6 +16,8 @@ export default (req,res,next) => {
             })
         }
 
+        console.log(token);
+
         const decodedToken = jwt.verify(token, secretKey);
 
         req.user = decodedToken;

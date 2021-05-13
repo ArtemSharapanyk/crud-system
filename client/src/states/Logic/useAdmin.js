@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_ALL_USERS } from "../../redux/actions/actionTypes";
 
-export default () => {
+export default (token, logoutFrontend) => {
     const {request} = useContext(HttpContext);
     const dispatch  = useDispatch();
 
@@ -19,10 +19,18 @@ export default () => {
     };
 
     const deleteUser = async id => {
-        const response = await request('http://localhost:5000/user/deleteUser', 'POST', {id});
+        const response = await request('http://localhost:5000/user/deleteUser', 'POST', {id}, {
+            Authorization: `Bearer ${token}`
+        });
+
+        const {idOfDeletedUser,idOfActionCreator} = response.data;
     
         if(response.res.ok){
-            getAllUsers();
+            if(idOfDeletedUser !== idOfActionCreator){
+                getAllUsers();
+            }else{
+                logoutFrontend()
+            }
         }
     };
 

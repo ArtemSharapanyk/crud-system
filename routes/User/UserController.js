@@ -196,14 +196,15 @@ export  class UserController{
     async deleteUser(req, res){
         try{
             const {id} = req.body;
-    
-    
+            const idOfActionCreator = req.user.userId;
             const user = await User.findByIdAndDelete(id);
     
             user.save();
     
             res.json({
-                message: 'User has deleted'
+                message: 'User has deleted',
+                idOfDeletedUser: id,
+                idOfActionCreator
             });
         }catch(e){
             res.status(400).json({

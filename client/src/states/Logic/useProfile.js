@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_PROFILES } from "../../redux/actions/actionTypes";
 
@@ -7,10 +8,16 @@ export default (token) => {
     const {request} = useContext(HttpContext);
     const dispatch  = useDispatch();
 
+    const history = useHistory();
+
     const createProfile = async data => {
         const response = await request('http://localhost:5000/user/createProfile', 'POST', data, {
             Authorization: `Bearer ${token}`
         });
+
+        if(response.res.ok){
+            history.push('/user/profiles');
+        }
     };
 
     const getProfiles = async () => {

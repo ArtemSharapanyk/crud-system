@@ -12,9 +12,15 @@ export default () => {
         setDirtyState(true);
     };
 
+    const clearInput = () => {
+        setDirtyState(false);
+        setValue('');
+    };
+
 
     return {
         value, dirty,
-        onChange, onBlur
+        onChange, onBlur,
+        clearInput
     }
 }

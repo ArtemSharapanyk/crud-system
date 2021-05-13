@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import {useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../states/Context/userContext';
 

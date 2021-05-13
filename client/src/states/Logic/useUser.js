@@ -2,13 +2,20 @@ import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_INFORMATION, PULL_USER_ROLE } from "../../redux/actions/actionTypes";
+import {useHistory} from 'react-router-dom';
 
 export default (token, loginFrontend, logoutFrontend) => {
+    const history = useHistory();
+
     const dispatch = useDispatch();
     const {request} = useContext(HttpContext);
 
     const register = async data => {
         const res = await request('http://localhost:5000/auth/reg', 'POST', data);
+        
+        if(res.res.ok){
+            history.push('/auth/log');
+        }
     };
 
     const login = async data => {

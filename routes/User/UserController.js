@@ -1,6 +1,18 @@
 import { hash } from "bcrypt";
 import Profile from "../../models/Profile.js";
 import User from "../../models/User.js";
+import jwt from 'jsonwebtoken';
+import config from 'config';
+
+const secretKey = config.get('jwtSecret');
+
+const generateToken = secretData => {
+    return jwt.sign(
+        secretData,
+        secretKey,
+        {expiresIn: '31 days'}
+    )
+};
 
 export  class UserController{
     async createProfile(req,res){
@@ -17,7 +29,7 @@ export  class UserController{
     
             res.json({message: 'Profile has successful added'})
         }catch(e){
-            res.status(400).json('Something go bad');
+            res.status(400).json(`Profile hasn't created`);
         }
     }
 
@@ -41,7 +53,7 @@ export  class UserController{
                 profiles: newProfileArray
             })
         }catch(e){
-            res.status(400).json({message: 'Something went bad'});
+            res.status(400).json({message: `Users haven't getted`});
         }
     }
     
@@ -58,7 +70,7 @@ export  class UserController{
             });
     
         }catch(e){
-            res.status(400).json({message: e})
+            res.status(400).json({message: `User haven't been deleted`})
         }
     }
 
@@ -78,8 +90,7 @@ export  class UserController{
             });
             
         }catch(e){
-            console.log(e)
-            res.status(400).json({message: 'Something went bad'})
+            res.status(400).json({message: 'Change went bad'})
         }
     }
 
@@ -101,7 +112,7 @@ export  class UserController{
             });
         }catch(e){
             res.status(400).json({
-                message: e.message
+                message: `Can't find user`
             })
         }
     }
@@ -112,7 +123,7 @@ export  class UserController{
                 role: req.user.userRole
             });
         }catch(e){
-            res.status(400).json('Something bad');
+            res.status(400).json(`didn't get role`);
         }
     }
 
@@ -160,7 +171,6 @@ export  class UserController{
                 message: 'User has updated'
             });
         }catch(e){
-            console.log(e)
     
             res.status(400).json({
                 message: `User hasn't updated`
@@ -186,7 +196,6 @@ export  class UserController{
                 message: 'User successfully changed'
             });
         }catch(e){
-            console.log(e);
             res.status(400).json({
                 message: 'Update was failded'
             });
@@ -210,6 +219,26 @@ export  class UserController{
             res.status(400).json({
                 message: `User hasn't deleted`
             });
+        }
+    }
+
+    async refreshToken(req, res){
+        try{
+            const {userId, userRole} = req.user;
+        
+            const dataToSecret = {
+                userId, userRole
+            };
+        
+            const newToken = generateToken(dataToSecret);
+        
+            res.json({
+                token: newToken
+            });
+        }catch(e){
+            res.status(400).json({
+                message: 'Bad token refresh!'
+            })
         }
     }
 }

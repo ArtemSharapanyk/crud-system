@@ -27,7 +27,6 @@ export default () => {
                     return 'Array is empty';
                 }else{
                     return allUsersArray.map(item => {
-                        console.log(item.id)
                         return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
                             <Btn classes={'btn btn_send-data'} onClick={deleteUser.bind(this, item.id)}>
                                 Delete

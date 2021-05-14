@@ -16,7 +16,7 @@ export default (req,res,next) => {
             })
         }
 
-        console.log(token);
+
 
         const decodedToken = jwt.verify(token, secretKey);
 
@@ -24,7 +24,6 @@ export default (req,res,next) => {
 
         next();
     }catch(e){
-        console.log(e)
         return res.status(400).json({
             message:`Token verify is bad`
         })

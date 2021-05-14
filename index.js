@@ -32,7 +32,6 @@ const startServer = async () => {
             console.log('server has started')
         })
     }catch(e){
-        console.log(e);
         process.exitCode(1);
     }
 };

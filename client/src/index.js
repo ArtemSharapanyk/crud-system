@@ -1,4 +1,6 @@
+import './assets/scss/main.scss';
 import 'regenerator-runtime/runtime';
+import '../setUpTest';
 // base imports
 import React                                   from 'react';
 import ReactDOM                                from 'react-dom';

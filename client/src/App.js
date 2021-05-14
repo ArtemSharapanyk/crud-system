@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter}     from 'react-router-dom';
-import                                        './assets/scss/main.scss';
 import Alert from './components/Alert/Alert';
 import Nav from './components/Nav/Nav';
 import PageConatiner from './components/PageContainer/PageConatiner';

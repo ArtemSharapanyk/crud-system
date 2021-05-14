@@ -6,11 +6,17 @@ import { UserContext } from '../../states/Context/userContext';
 import Btn from '../Btn/Btn';
 import Input from '../Controller/Controller';
 
-export default ({type = 'profile-card', classes,cardData, children,cardState, closeCardFunc}) => {
+export default ({type = 'profile-card', classes,cardData = {
+    name: 'name',
+    typeOfWork: 'typeOfWork',
+    goals: 'goals',
+    minds: 'minds',
+    age: 'age'
+}, children,cardState, closeCardFunc}) => {
     if(type === 'profile-card' ){
         const {name, typeOfWork, goals, minds, age} = cardData;
         return (
-            <li className={["card card_profile-card", classes ? classes : ''].join(' ')}>
+            <li className={["card card_profile-card", classes ? classes : ''].join(' ')}  data-testid="profile-card">
                     <div className="card__name card__property">
                         Name of profiles:
                         <div className="card__value">

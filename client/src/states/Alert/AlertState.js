@@ -3,7 +3,7 @@ import { AlertContext } from '../Context/AlertContext'
 export default ({children}) => {
     const [visible, setVisible] = useState(false);
     const [type, setType] = useState('error');
-    const [message,setMessage] = useState(null);
+    const [message,setMessage] = useState('Default message');
 
     const hideAlert = () => {
         setVisible(false);

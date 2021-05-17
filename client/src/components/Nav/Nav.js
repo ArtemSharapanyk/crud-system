@@ -30,15 +30,6 @@ export default () => {
                             Create Profile
                         </NavLink>
                     </li>
-                    {role === 'ADMIN' ? 
-                        <li className="list-of-links__item">
-                            <NavLink to='/user/profiles' activeClassName='list-of-links__item_active-link'>
-                                All profiles        
-                            </NavLink>
-                        </li>
-                        :
-                        null
-                    }
                     <li className="list-of-links__item">
                         <NavLink to='/user/userInfo' activeClassName='list-of-links__item_active-link'>
                             Your account       
@@ -62,6 +53,11 @@ export default () => {
                         :
                         null
                     }
+                    <li className="list-of-links__item">
+                        <NavLink to='/user/profiles' activeClassName='list-of-links__item_active-link'>
+                            All profiles        
+                        </NavLink>
+                    </li>
                     <li className="list-of-links__item" onClick={logout}>
                         Logout            
                     </li>

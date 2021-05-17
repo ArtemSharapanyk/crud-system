@@ -6,7 +6,7 @@ import Register from '../../pages/Register';
 import Login from '../../pages/Login';
 import AllProfilesPage from '../../pages/AllProfilesPage';
 import UserInfo from '../../pages/UserInfo';
-import AllUsers from '../../pages/AllUser';
+import AllUsers from '../../pages/AllUsers';
 import Dashboard from '../../pages/Dashboard';
 
 
@@ -20,13 +20,6 @@ export default () => {
                 <Route path='/user/createProfile'>
                     <CreateProfilePage/>
                 </Route>
-                {role === 'ADMIN' ? 
-                    <Route path='/user/profiles'>
-                        <AllProfilesPage/>
-                    </Route>
-                :
-                    null
-                }
                 <Route path='/user/userInfo'>
                     <UserInfo/>
                 </Route>
@@ -45,6 +38,9 @@ export default () => {
                     :
                         null
                 }
+                <Route path='/user/profiles'>
+                    <AllProfilesPage/>
+                </Route>
                 <Redirect to='/user/createProfile'/>
             </Switch>
         )

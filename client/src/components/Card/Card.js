@@ -13,6 +13,7 @@ export default ({type = 'profile-card', classes,cardData = {
     minds: 'minds',
     age: 'age'
 }, children,cardState, closeCardFunc}) => {
+
     if(type === 'profile-card' ){
         const {name, typeOfWork, goals, minds, age} = cardData;
         return (

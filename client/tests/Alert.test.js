@@ -15,14 +15,4 @@ describe('alert component should', () => {
 
         expect(container).toBeInTheDocument();
     });
-
-    // it('should return visible value', () => {
-    //     const {container} = render(
-    //         <AlertState>
-    //             <Alert/>
-    //         </AlertState>
-    //     );
-
-    //     screen.debug()
-    // })
 });

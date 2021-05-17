@@ -21,6 +21,7 @@ export default (state = initialState, {type, payload}) => {
             }
         case LOG_OUT:
             return {
+                ...state,
                 isAuth: false, 
                 token: null,
                 details: null

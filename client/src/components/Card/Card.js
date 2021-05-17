@@ -6,6 +6,7 @@ import { UserContext } from '../../states/Context/userContext';
 import Btn from '../Btn/Btn';
 import Input from '../Controller/Controller';
 
+
 export default ({type = 'profile-card', classes,cardData, children,cardState, closeCardFunc}) => {
     if(type === 'profile-card' ){
         const {name, typeOfWork, goals, minds, age} = cardData;
@@ -266,19 +267,31 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
         const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
         const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
         const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+        const {value: roleName, onChange:onChangeRoleName, onBlur:onBlurRoleName, dirty: roleNameDirty} = useInputValidator();
 
 
         const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
         const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
         const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(userNameValue, {minLength: 4}, clsOfInputs,userNameDirty);
+        const {inputValided: roleNameValided, clsOfInput: roleNameCls} = useValidation(roleName, {minLength: 4}, clsOfInputs,roleNameDirty);
 
-        const formValided = useFormValidator(emailValided, passwordValided, userNameValided);
+
+        const formValided = useFormValidator(emailValided, passwordValided, userNameValided, roleNameValided);
+
+        const roleToUpper = () => {
+            const role = roleName.trim();
+
+            if(role){
+                return role.toUpperCase();
+            };
+        };
 
 
         const data = {
             username: userNameValue, 
             password: passwordValue,
-            email: emailValue
+            email: emailValue, 
+            role: roleToUpper()
         };
 
         const update = () => {
@@ -296,6 +309,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                         <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
                         <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
                         <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
+                        <Input value={roleName} changeValue={onChangeRoleName} classes = {roleNameCls} type="text" onBlur={onBlurRoleName}  placeholder='Role' />
                     </div>
                     <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
                         <div className="btn-box">

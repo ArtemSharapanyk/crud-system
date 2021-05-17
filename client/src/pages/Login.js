@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Btn from '../components/Btn/Btn';
 import Input from '../components/Controller/Controller';
+import { HttpContext } from '../hooks/useHttp/HttpContext';
 import useFormValidator from '../hooks/validation/useFormValidator';
 import useInputValidator from '../hooks/validation/useInputValidator';
 import useValidation from '../hooks/validation/useValidation';
@@ -9,6 +10,7 @@ import { UserContext } from '../states/Context/userContext';
 
 export default () => {
     const {login} = useContext(UserContext);
+    const {load}  = useContext(HttpContext);
 
     const clsOfInputs = [
         'form-control',
@@ -42,7 +44,7 @@ export default () => {
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">
-                    <Btn disabled={!formValided} classes="btn btn_send-data auth-section__btn" onClick={login.bind(this, objectOfData)}>
+                    <Btn disabled={!formValided || load} classes="btn btn_send-data auth-section__btn" onClick={login.bind(this, objectOfData)}>
                         Sing in
                     </Btn>
                 </div>

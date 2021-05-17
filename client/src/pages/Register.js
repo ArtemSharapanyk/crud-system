@@ -12,6 +12,7 @@ import { UserContext } from '../states/Context/userContext';
 
 export default () => {
     const {register} = useContext(UserContext);
+    const {load}     = useContext(HttpContext);
 
     const {checkboxState, setActive} = useCheckBox();
 
@@ -55,7 +56,7 @@ export default () => {
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">
-                    <Btn disabled={!formValided} onClick={register.bind(this,objectOfData)} classes="btn btn_send-data auth-section__btn">
+                    <Btn disabled={!formValided || load} onClick={register.bind(this,objectOfData)} classes="btn btn_send-data auth-section__btn">
                         Sing up
                     </Btn>
                 </div>

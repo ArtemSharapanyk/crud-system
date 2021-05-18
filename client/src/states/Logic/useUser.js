@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_INFORMATION, PULL_USER_ROLE } from "../../redux/actions/actionTypes";
 import {useHistory} from 'react-router-dom';
+import { apiUrl } from "../../../config";
+
 
 export default (token, loginFrontend, logoutFrontend) => {
     const history = useHistory();
@@ -11,7 +13,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     const {request} = useContext(HttpContext);
 
     const register = async data => {
-        const res = await request('http://localhost:5000/auth/reg', 'POST', data);
+        const res = await request(`${apiUrl}auth/reg`, 'POST', data);
         
         if(res.res.ok){
             history.push('/auth/log');
@@ -19,7 +21,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const login = async data => {
-        const dataFromServer = await request('http://localhost:5000/auth/log', 'POST', data);
+        const dataFromServer = await request(`${apiUrl}auth/log`, 'POST', data);
         
         if(dataFromServer.res.ok){
             loginFrontend(dataFromServer.data.token)
@@ -31,7 +33,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const getUserData = async () => {
-        const response = await request('http://localhost:5000/user/getInfo', 'GET', null, {
+        const response = await request(`${apiUrl}user/getInfo`, 'GET', null, {
             Authorization: `Bearer ${token}`,
         });
 
@@ -44,7 +46,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const pullUserRole = async () => {
-        const response = await request('http://localhost:5000/user/role', 'GET', null, {
+        const response = await request(`${apiUrl}user/role`, 'GET', null, {
             Authorization: `Bearer ${token}`
         });
 
@@ -57,7 +59,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const updateUserInfo = async data => {
-        const response = await request('http://localhost:5000/user/updateUserData', 'POST', data, {
+        const response = await request(`${apiUrl}user/updateUserData`, 'POST', data, {
             Authorization: `Bearer ${token}`
         });
 

@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
 import Profile from "../../models/Profile.js";
-import User from "../../models/User.js";
+import User from "../../models/user.js";
 import jwt from 'jsonwebtoken';
 import config from 'config';
 

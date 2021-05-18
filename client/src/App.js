@@ -7,7 +7,7 @@ import PageConatiner from './components/PageContainer/PageConatiner';
 import UseHttp from './hooks/useHttp/useHttp';
 import AlertState from './states/Alert/AlertState';
 import DashboardState from './states/Dashboard/DashboardState';
-import UserState from './states/User/UserState';
+import UserState from '../src/states/user/UserState';
 
 export default () => {
     return (

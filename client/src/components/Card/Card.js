@@ -310,7 +310,14 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
                         <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
                         <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
                         <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
-                        <Input value={roleName} changeValue={onChangeRoleName} classes = {roleNameCls} type="text" onBlur={onBlurRoleName}  placeholder='Role' />
+                        
+                        {
+                            role === 'ADMIN' ?
+                                null
+                            :
+                            
+                            <Input value={roleName} changeValue={onChangeRoleName} classes = {roleNameCls} type="text" onBlur={onBlurRoleName}  placeholder='Role' />
+                        }
                     </div>
                     <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
                         <div className="btn-box">

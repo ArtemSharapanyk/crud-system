@@ -6,7 +6,7 @@ import Register from '../../pages/Register';
 import Login from '../../pages/Login';
 import AllProfilesPage from '../../pages/AllProfilesPage';
 import UserInfo from '../../pages/UserInfo';
-import AllUsers from '../../pages/AllUsers';
+import {AllUsers} from '../../pages/AllUsers';
 import Dashboard from '../../pages/Dashboard';
 
 

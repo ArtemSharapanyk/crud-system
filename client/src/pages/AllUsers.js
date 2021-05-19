@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import  {CSSTransition} from 'react-transition-group';
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
@@ -6,8 +7,9 @@ import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { UserContext } from '../states/Context/userContext';
 
 
-export default () => {
-    const {allUsersArray, getAllUsers, deleteUser} = useContext(UserContext);
+
+export const AllUsers = () => {
+    const {allUsersArray, getAllUsers, deleteUser, userInfo, getUserData} = useContext(UserContext);
 
     const [updateCardVisible, setUpdateCardVisible] = useState(false);
     const [cardData,updateData] = useState(null);
@@ -21,6 +23,17 @@ export default () => {
         setUpdateCardVisible(false);
     };
 
+    const isNotYou = username => {
+        if(userInfo){
+            if(userInfo.username === username){
+                return true
+            }else{
+                return false
+            }
+        }
+    };
+
+
     const renderElements = () => {
         if(allUsersArray){
                 if(!allUsersArray.length){
@@ -28,10 +41,10 @@ export default () => {
                 }else{
                     return allUsersArray.map(item => {
                         return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
-                            <Btn classes={'btn btn_send-data'} onClick={deleteUser.bind(this, item.id)}>
+                            <Btn classes={'btn btn_send-data'} disabled={isNotYou(item.username)} onClick={deleteUser.bind(this, item.id)}>
                                 Delete
                             </Btn>
-                            <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item.id)}>
+                            <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item)}>
                                 Update
                             </Btn>
                         </Card>
@@ -44,7 +57,8 @@ export default () => {
     const {load} = useContext(HttpContext);
 
     useEffect(() => {
-        getAllUsers()
+        getAllUsers();
+        getUserData();
     }, [])
 
     if(load){
@@ -59,9 +73,14 @@ export default () => {
             <ul className="all-users-section__list-of-users">
                 {renderElements()}
             </ul>
-            <Card cardState={updateCardVisible} cardData={cardData} type={'user-update-card-admin'} closeCardFunc={closeUpdateCard}>
-
-            </Card>
+            
+            {
+                updateCardVisible ?
+                    <Card cardData={cardData} cardState={updateCardVisible} type={'user-update-card-admin'} closeCardFunc={closeUpdateCard} />
+                :
+                    null
+            
+            }
         </section>
     )
 };

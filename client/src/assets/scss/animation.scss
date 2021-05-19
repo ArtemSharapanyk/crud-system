@@ -1,14 +1,13 @@
-.alert-enter {
-    opacity: 0;
+.card-wrap_fade{
+    animation: fade 200ms ease-in;
 }
-.alert-enter-active {
-    opacity: 1;
-    transition: opacity 200ms;
-}
-.alert-exit {
-    opacity: 1;
-}
-.alert-exit-active {
-    opacity: 0;
-    transition: opacity 200ms;
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
 }

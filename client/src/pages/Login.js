@@ -16,9 +16,11 @@ export default () => {
         'form-control',
         'auth-section__input',
     ];
+
     
-    const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-    const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+    
+    const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty, clearInput: clearPassword} = useInputValidator();
+    const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty, clearInput: clearEmail} = useInputValidator();
 
 
     const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
@@ -29,6 +31,12 @@ export default () => {
     const objectOfData = {
         username: userNameValue,
         password: passwordValue
+    };
+
+    const loginHandler = data => {
+        login(data);
+        clearPassword();
+        clearEmail();
     };
 
 
@@ -44,7 +52,7 @@ export default () => {
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">
-                    <Btn disabled={!formValided || load} classes="btn btn_send-data auth-section__btn" onClick={login.bind(this, objectOfData)}>
+                    <Btn disabled={!formValided || load} classes="btn btn_send-data auth-section__btn" onClick={loginHandler.bind(this, objectOfData)}>
                         Sing in
                     </Btn>
                 </div>

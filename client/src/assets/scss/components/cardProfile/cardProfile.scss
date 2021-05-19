@@ -8,15 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    pointer-events: none;
     transition: .4s ease-in-out;
     z-index: 1000;
-
-    &_active{
-        opacity: 1 !important;
-        pointer-events:all !important;
-    }
 }
 
 .card{

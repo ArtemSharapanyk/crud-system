@@ -21,9 +21,9 @@ export default () => {
         'auth-section__input',
     ];
     
-    const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
-    const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-    const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+    const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty, clearInput: clearEmail} = useInputValidator();
+    const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty, clearInput: clearPassword} = useInputValidator();
+    const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty, clearInput: clearUserName} = useInputValidator();
 
 
     const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
@@ -39,6 +39,19 @@ export default () => {
         isAdmin:checkboxState 
     };
 
+    const registerHandler = data => {
+        register(data);
+        
+        new Promise(res => {
+            register(data);
+
+            res();
+        }).then(() => {
+            clearPassword();
+            clearEmail();
+            clearUserName();
+        })
+    };
 
     
     return (
@@ -56,7 +69,7 @@ export default () => {
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">
-                    <Btn disabled={!formValided || load} onClick={register.bind(this,objectOfData)} classes="btn btn_send-data auth-section__btn">
+                    <Btn disabled={!formValided || load} onClick={registerHandler.bind(this,objectOfData)} classes="btn btn_send-data auth-section__btn">
                         Sing up
                     </Btn>
                 </div>

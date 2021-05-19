@@ -116,13 +116,12 @@ export default ({type = 'profile-card', classes,cardData = {
 
         const {updateProfile} = useContext(UserContext);
 
-        const {id} = cardData ? cardData : {id: 'id'};
+        const {name, typeOfWork,goals,age,minds,id} = cardData ;
 
         const cls = [
             'card-wrap',
-            cardState ? 'card-wrap_active' : ''
+            'card-wrap_fade' 
         ];
-
 
         const clsOfInputs = [
             'form-control',
@@ -131,13 +130,13 @@ export default ({type = 'profile-card', classes,cardData = {
     
         const clsOfTextArea = ['message-block create-profile-section__message-block ']; 
         
-        const {value: profileNameValue, onChange:onChangeProfileName, onBlur:onBlurProfileName, dirty: profileNameDirty} = useInputValidator();
-        const {value: typeOfWorkValue, onChange:onChangeTypeOfWork, onBlur:onBlurTypeOfWork, dirty: typeOfWorkDirty} = useInputValidator();
+        const {value: profileNameValue, onChange:onChangeProfileName, onBlur:onBlurProfileName, dirty: profileNameDirty} = useInputValidator(name);
+        const {value: typeOfWorkValue, onChange:onChangeTypeOfWork, onBlur:onBlurTypeOfWork, dirty: typeOfWorkDirty} = useInputValidator(typeOfWork);
     
-        const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator();
-        const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator();
+        const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator(goals);
+        const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator(minds);
     
-        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator();
+        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator(age);
 
 
         const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);
@@ -194,11 +193,13 @@ export default ({type = 'profile-card', classes,cardData = {
     }
 
     if(type === 'user-update-card'){
-        const {updateUserInfo} = useContext(UserContext);
+        const {updateUserInfo, userInfo} = useContext(UserContext);
+
+        const {email, username} = userInfo;
 
         const cls = [
             'card-wrap',
-            cardState ? 'card-wrap_active' : ''
+            'card-wrap_fade' 
         ];
 
 
@@ -207,9 +208,9 @@ export default ({type = 'profile-card', classes,cardData = {
             'auth-section__input',
         ];
     
-        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
+        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator(email);
         const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
+        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator(username);
 
 
         const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
@@ -257,11 +258,11 @@ export default ({type = 'profile-card', classes,cardData = {
     if(type === 'user-update-card-admin'){
         const {updateUserInfoAdmin} = useContext(UserContext);
     
-        const id = cardData ? cardData : '';
+        const {email, username, role, id} =  cardData ? cardData : {};
 
         const cls = [
             'card-wrap',
-            cardState ? 'card-wrap_active' : ''
+            'card-wrap_fade' 
         ];
 
 
@@ -270,10 +271,10 @@ export default ({type = 'profile-card', classes,cardData = {
             'auth-section__input',
         ];
     
-        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator();
+        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator(email);
         const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator();
-        const {value: roleName, onChange:onChangeRoleName, onBlur:onBlurRoleName, dirty: roleNameDirty} = useInputValidator();
+        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator(username);
+        const {value: roleName, onChange:onChangeRoleName, onBlur:onBlurRoleName, dirty: roleNameDirty} = useInputValidator(role);
 
 
         const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
@@ -315,7 +316,14 @@ export default ({type = 'profile-card', classes,cardData = {
                         <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
                         <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
                         <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
-                        <Input value={roleName} changeValue={onChangeRoleName} classes = {roleNameCls} type="text" onBlur={onBlurRoleName}  placeholder='Role' />
+                        
+                        {
+                            role === 'ADMIN' ?
+                                null
+                            :
+                            
+                            <Input value={roleName} changeValue={onChangeRoleName} classes = {roleNameCls} type="text" onBlur={onBlurRoleName}  placeholder='Role' />
+                        }
                     </div>
                     <div className={["card__btn", formValided ? '' : 'disable'].join(' ')}>
                         <div className="btn-box">

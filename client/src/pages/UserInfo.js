@@ -31,7 +31,12 @@ export default () => {
                     </Btn>
                </Card>
 
-               <Card cardState={updateCardState} type={'user-update-card'} closeCardFunc={setStateOfUpdateCard.bind(this, false)} />
+               {
+                   updateCardState ?
+                        <Card cardState={updateCardState} type={'user-update-card'} closeCardFunc={setStateOfUpdateCard.bind(this, false)} />
+                   :
+                        null
+               }
            </div>
         </section>
     )

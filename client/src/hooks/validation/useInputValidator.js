@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-export default () => {
-    const [value, setValue] = useState('');
+export default (initialValue) => {
+    const [value, setValue] = useState(initialValue || '');
     const [dirty, setDirtyState] = useState(false);
 
     const onChange = e => {

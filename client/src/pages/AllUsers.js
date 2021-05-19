@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import  {CSSTransition} from 'react-transition-group';
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';
@@ -6,7 +7,8 @@ import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { UserContext } from '../states/Context/userContext';
 
 
-export default () => {
+
+export const AllUsers = () => {
     const {allUsersArray, getAllUsers, deleteUser} = useContext(UserContext);
 
     const [updateCardVisible, setUpdateCardVisible] = useState(false);
@@ -31,7 +33,7 @@ export default () => {
                             <Btn classes={'btn btn_send-data'} onClick={deleteUser.bind(this, item.id)}>
                                 Delete
                             </Btn>
-                            <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item.id)}>
+                            <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item)}>
                                 Update
                             </Btn>
                         </Card>
@@ -59,9 +61,14 @@ export default () => {
             <ul className="all-users-section__list-of-users">
                 {renderElements()}
             </ul>
-            <Card cardState={updateCardVisible} cardData={cardData} type={'user-update-card-admin'} closeCardFunc={closeUpdateCard}>
-
-            </Card>
+            
+            {
+                updateCardVisible ?
+                    <Card cardData={cardData} cardState={updateCardVisible} type={'user-update-card-admin'} closeCardFunc={closeUpdateCard} />
+                :
+                    null
+            
+            }
         </section>
     )
 };

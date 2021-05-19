@@ -64,7 +64,13 @@ export default () => {
            <ul className="all-profile-page__profilea-list">
                 {renderElements()}
            </ul>
-           <Card type={'profile-update-card'} cardState={updateCardVisible} cardData={cardData} closeCardFunc={closeUpdateCard}/>
+           
+           {
+               updateCardVisible ?
+                    <Card type={'profile-update-card'} cardState={updateCardVisible} cardData={cardData} closeCardFunc={closeUpdateCard}/>
+                :
+                    null
+           }
         </section>
     )
 };

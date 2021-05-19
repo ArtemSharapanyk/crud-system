@@ -110,7 +110,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
 
         const {updateProfile} = useContext(UserContext);
 
-        const {name, typeOfWork,goals,minds,id} = cardData ;
+        const {name, typeOfWork,goals,age,minds,id} = cardData ;
 
         const cls = [
             'card-wrap',
@@ -130,7 +130,7 @@ export default ({type = 'profile-card', classes,cardData, children,cardState, cl
         const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator(goals);
         const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator(minds);
     
-        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator();
+        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator(age);
 
 
         const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);

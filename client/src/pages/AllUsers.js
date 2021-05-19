@@ -9,7 +9,7 @@ import { UserContext } from '../states/Context/userContext';
 
 
 export const AllUsers = () => {
-    const {allUsersArray, getAllUsers, deleteUser} = useContext(UserContext);
+    const {allUsersArray, getAllUsers, deleteUser, userInfo, getUserData} = useContext(UserContext);
 
     const [updateCardVisible, setUpdateCardVisible] = useState(false);
     const [cardData,updateData] = useState(null);
@@ -23,6 +23,17 @@ export const AllUsers = () => {
         setUpdateCardVisible(false);
     };
 
+    const isNotYou = username => {
+        if(userInfo){
+            if(userInfo.username === username){
+                return true
+            }else{
+                return false
+            }
+        }
+    };
+
+
     const renderElements = () => {
         if(allUsersArray){
                 if(!allUsersArray.length){
@@ -30,7 +41,7 @@ export const AllUsers = () => {
                 }else{
                     return allUsersArray.map(item => {
                         return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
-                            <Btn classes={'btn btn_send-data'} onClick={deleteUser.bind(this, item.id)}>
+                            <Btn classes={'btn btn_send-data'} disabled={isNotYou(item.username)} onClick={deleteUser.bind(this, item.id)}>
                                 Delete
                             </Btn>
                             <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item)}>
@@ -46,7 +57,8 @@ export const AllUsers = () => {
     const {load} = useContext(HttpContext);
 
     useEffect(() => {
-        getAllUsers()
+        getAllUsers();
+        getUserData();
     }, [])
 
     if(load){

@@ -50,7 +50,7 @@ export default class authController{
         
                 res.json({message: 'User has just added'});
             }catch(e){
-                res.status(400).json({message: e})
+                res.status(400).json({message: 'Register is faild'})
             }
     }
 

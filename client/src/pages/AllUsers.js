@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import  {CSSTransition} from 'react-transition-group';
 import Btn from '../components/Btn/Btn';
 import Card from '../components/Card/Card'
 import Loader from '../components/Loader/Loader';

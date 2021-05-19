@@ -40,8 +40,6 @@ export default () => {
     };
 
     const registerHandler = data => {
-        register(data);
-        
         new Promise(res => {
             register(data);
 

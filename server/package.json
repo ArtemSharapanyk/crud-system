@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "backend": "nodemon index.js",
-    "client": "npm run dev --prefix client",
+    "client": "npm run dev --prefix ../client",
     "fullstackDev": "concurrently \" npm run backend \" \"npm run client \"",
     "start": "node js index.js"
   },

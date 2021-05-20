@@ -40,8 +40,6 @@ export default () => {
     };
 
     const registerHandler = data => {
-        register(data);
-        
         new Promise(res => {
             register(data);
 
@@ -53,6 +51,9 @@ export default () => {
         })
     };
 
+    if(load){
+        return <Loader/>
+    }
     
     return (
         <section className="page auth-section">

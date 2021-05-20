@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
+import { url } from "../../../config";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_ALL_USERS } from "../../redux/actions/actionTypes";
 
@@ -8,7 +9,7 @@ export default (token, logoutFrontend) => {
     const dispatch  = useDispatch();
 
     const getAllUsers = async () => {
-        const response = await request('http://localhost:5000/user/getAllUsers', 'GET', null);
+        const response = await request(`${url}/user/getAllUsers`, 'GET', null);
 
         if(response.res.ok){
             dispatch({
@@ -19,7 +20,7 @@ export default (token, logoutFrontend) => {
     };
 
     const deleteUser = async id => {
-        const response = await request('http://localhost:5000/user/deleteUser', 'POST', {id}, {
+        const response = await request(`${url}/user/deleteUser`, 'POST', {id}, {
             Authorization: `Bearer ${token}`
         });
 
@@ -35,7 +36,7 @@ export default (token, logoutFrontend) => {
     };
 
     const updateUserInfoAdmin = async (id, data) => {
-        const response = await request('http://localhost:5000/user/updateUser', 'POST', {id, data});
+        const response = await request(`${url}/user/updateUser`, 'POST', {id, data});
 
         if(response.res.ok){
             getAllUsers();

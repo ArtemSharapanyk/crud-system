@@ -51,6 +51,9 @@ export default () => {
         })
     };
 
+    if(load){
+        return <Loader/>
+    }
     
     return (
         <section className="page auth-section">

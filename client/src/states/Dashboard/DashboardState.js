@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { apiUrl} from '../../../config';
 import { HttpContext } from '../../hooks/useHttp/HttpContext';
 import { PULL_DASHBOARD_INFO } from '../../redux/actions/actionTypes';
 import { DashboardContex } from '../Context/DashboardContext';
@@ -11,7 +12,7 @@ export default ({children}) => {
     const {request} = useContext(HttpContext);
 
     const pullDashboardData = async () => {
-        const response = await request('http://localhost:5000/dashboard/info', 'GET');
+        const response = await request(`${apiUrl}dashboard/info`, 'GET');
 
         if(response.res.ok){
             dispatch({

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Btn from '../components/Btn/Btn';
 import Input from '../components/Controller/Controller';
+import Loader from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
 import useFormValidator from '../hooks/validation/useFormValidator';
 import useInputValidator from '../hooks/validation/useInputValidator';
@@ -39,7 +40,9 @@ export default () => {
         clearEmail();
     };
 
-
+    if(load){
+        return <Loader/>
+    }
     
     return (
         <section className="page auth-section">

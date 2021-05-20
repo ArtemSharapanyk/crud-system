@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { apiUrl } from "../../../config";
 import { LOGIN, LOG_OUT } from "../../redux/actions/actionTypes";
 import { HttpContext } from "../useHttp/HttpContext";
 
@@ -27,7 +28,7 @@ export default () => {
 
     const refreshToken = async (token) => {
         const tokenObject = JSON.parse(token);
-        const response = await request('http://localhost:5000/user/refreshToken', 'GET', null, {
+        const response = await request(`${apiUrl}user/refreshToken`, 'GET', null, {
             Authorization: `Bearer ${tokenObject.token}`
         });
 

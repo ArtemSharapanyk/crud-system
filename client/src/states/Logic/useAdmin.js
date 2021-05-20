@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
+
 import {apiUrl} from "../../../config";
+
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_ALL_USERS } from "../../redux/actions/actionTypes";
 
@@ -20,6 +22,7 @@ export default (token, logoutFrontend) => {
     };
 
     const deleteUser = async id => {
+
         const response = await request(`${apiUrl}user/deleteUser`, 'POST', {id}, {
             Authorization: `Bearer ${token}`
         });
@@ -36,7 +39,9 @@ export default (token, logoutFrontend) => {
     };
 
     const updateUserInfoAdmin = async (id, data) => {
+
         const response = await request(`${apiUrl}user/updateUser`, 'POST', {id, data});
+
 
         if(response.res.ok){
             getAllUsers();

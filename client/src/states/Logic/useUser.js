@@ -14,7 +14,7 @@ export default (token, loginFrontend, logoutFrontend) => {
 
     const register = async data => {
         const res = await request(`${apiUrl}auth/reg`, 'POST', data);
-        
+
         if(res.res.ok){
             history.push('/auth/log');
         }
@@ -22,7 +22,7 @@ export default (token, loginFrontend, logoutFrontend) => {
 
     const login = async data => {
         const dataFromServer = await request(`${apiUrl}auth/log`, 'POST', data);
-        
+
         if(dataFromServer.res.ok){
             loginFrontend(dataFromServer.data.token)
         }
@@ -46,6 +46,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const pullUserRole = async () => {
+
         const response = await request(`${apiUrl}user/role`, 'GET', null, {
             Authorization: `Bearer ${token}`
         });
@@ -59,7 +60,7 @@ export default (token, loginFrontend, logoutFrontend) => {
     };
 
     const updateUserInfo = async data => {
-        const response = await request(`${apiUrl}user/updateUserData`, 'POST', data, {
+        const response = await request(`${apiUrl}user/updateUserData`,'POST', data, {
             Authorization: `Bearer ${token}`
         });
 

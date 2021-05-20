@@ -5,6 +5,6 @@ COPY package*.json /server/
 RUN npm install 
 
 COPY . /server/
-EXPOSE 5000
+EXPOSE 5001
 
 CMD ["npm", "run", "backend"]

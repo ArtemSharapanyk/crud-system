@@ -7,7 +7,7 @@ import userRouter from './routes/User/UserRouter.js';
 import dashboardRouter from './routes/Dashboard/DashboardRouter.js';
 
 
-const PORT = config.get('port') || 3000;
+const PORT =  process.env.PORT || config.get('port');
 const URL_DATABASE = config.get('mongoUrl');
 
 const app = express();
@@ -29,7 +29,7 @@ const startServer = async () => {
         })
 
         app.listen(PORT, () => {
-            console.log('server has started')
+            console.log('server has started' + PORT);
         })
     }catch(e){
         process.exitCode(1);

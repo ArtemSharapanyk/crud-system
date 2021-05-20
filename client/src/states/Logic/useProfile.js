@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { apiUrl } from "../../../config";
+
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_PROFILES } from "../../redux/actions/actionTypes";
 
@@ -37,6 +38,7 @@ export default (token) => {
 
     const deleteProfile = async id => {
         const response = await request(`${apiUrl}user/deleteProfile`, 'POST', {id});
+
 
         if(response.res.ok){
             getProfiles()

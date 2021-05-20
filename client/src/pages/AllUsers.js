@@ -38,8 +38,8 @@ export const AllUsers = () => {
                 if(!allUsersArray.length){
                     return 'Array is empty';
                 }else{
-                    return allUsersArray.map(item => {
-                        return <Card type={'user-card-list'} key={item.username + item.id + 'user card'} cardData={item}>
+                    return allUsersArray.map((item, i) => {
+                        return <Card type={'user-card-list'} key={item.username + item.id + 'user card' + i} cardData={item}>
                             <Btn classes={'btn btn_send-data'} disabled={isNotYou(item.username)} onClick={deleteUser.bind(this, item.id)}>
                                 Delete
                             </Btn>

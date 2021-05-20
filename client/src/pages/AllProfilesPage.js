@@ -35,10 +35,10 @@ export default () => {
                 if(!profiles.length){
                     return 'Profiles is empty';
                 }else{
-                    return profiles.map(item => {
+                    return profiles.map((item, i) => {
                         return (
                             <>
-                                <Card key={item.id + 'profile card'} cardState={updateCardVisible} cardData = {item}>
+                                <Card key={item.id + 'profile card' + i} cardState={updateCardVisible} cardData = {item}>
                                     <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item)}>
                                         Update
                                     </Btn>

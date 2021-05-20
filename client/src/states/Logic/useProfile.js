@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { url } from "../../../config";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_PROFILES } from "../../redux/actions/actionTypes";
 
@@ -11,7 +12,7 @@ export default (token) => {
     const history = useHistory();
 
     const createProfile = async data => {
-        const response = await request('http://localhost:5000/user/createProfile', 'POST', data, {
+        const response = await request(`${url}/user/createProfile`, 'POST', data, {
             Authorization: `Bearer ${token}`
         });
 
@@ -21,7 +22,7 @@ export default (token) => {
     };
 
     const getProfiles = async () => {
-        const response = await request('http://localhost:5000/user/getProfiles', 'GET', null, {
+        const response = await request(`${url}/user/getProfiles`, 'GET', null, {
             Authorization: `Bearer ${token}`
         });
 
@@ -34,7 +35,7 @@ export default (token) => {
     };
 
     const deleteProfile = async id => {
-        const response = await request('http://localhost:5000/user/deleteProfile', 'POST', {id});
+        const response = await request(`${url}/user/deleteProfile`, 'POST', {id});
 
         if(response.res.ok){
             getProfiles()
@@ -42,7 +43,7 @@ export default (token) => {
     };
 
     const updateProfile = async data => {
-        const response = await request('http://localhost:5000/user/updateProfile', 'POST', data);
+        const response = await request(`${url}/user/updateProfile`, 'POST', data);
 
         if(response.res.ok){
             getProfiles()

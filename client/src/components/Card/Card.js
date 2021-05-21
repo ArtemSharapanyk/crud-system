@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import useFormValidator from '../../hooks/validation/useFormValidator';
-import useInputValidator from '../../hooks/validation/useInputValidator';
-import useValidation from '../../hooks/validation/useValidation';
+import {useFormValidator} from '../../hooks/validation/useFormValidator';
+import {useInputValidator} from '../../hooks/validation/useInputValidator';
+import {useValidation} from '../../hooks/validation/useValidation';
 import { UserContext } from '../../states/Context/userContext';
-import Btn from '../Btn/Btn';
-import Input from '../Controller/Controller';
+import {Btn} from '../Btn/Btn';
+import {Input} from '../Controller/Controller';
 
 
-export default ({type = 'profile-card', classes,cardData, children,cardState, closeCardFunc}) => {
+export const Card = ({type = 'profile-card', classes,cardData, children, closeCardFunc}) => {
     if(type === 'profile-card' ){
         const {name, typeOfWork, goals, minds, age} = cardData;
         return (

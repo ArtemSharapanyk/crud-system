@@ -5,7 +5,7 @@ import { HttpContext } from '../../hooks/useHttp/HttpContext';
 import { PULL_DASHBOARD_INFO } from '../../redux/actions/actionTypes';
 import { DashboardContex } from '../Context/DashboardContext';
 
-export default ({children}) => {
+export const DashboardState = ({children}) => {
     const dispatch = useDispatch();
     const {usersCount,profilesCount,profilesUpperEighteen} = useSelector(state => state.Dashboard);
 

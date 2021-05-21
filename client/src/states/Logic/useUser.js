@@ -5,7 +5,7 @@ import { PULL_USER_INFORMATION, PULL_USER_ROLE } from "../../redux/actions/actio
 import {useHistory} from 'react-router-dom';
 import { url } from "../../../config";
 
-export default (token, loginFrontend, logoutFrontend) => {
+export const useUser = (token, loginFrontend, logoutFrontend) => {
     const history = useHistory();
 
     const dispatch = useDispatch();

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { AlertContext } from '../Context/AlertContext'
-export default ({children}) => {
+import React, { useState } from 'react';
+import { AlertContext } from '../Context/AlertContext';
+
+export const AlertState = ({children}) => {
     const [visible, setVisible] = useState(false);
     const [type, setType] = useState('error');
     const [message,setMessage] = useState(null);

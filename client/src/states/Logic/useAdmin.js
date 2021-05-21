@@ -4,7 +4,7 @@ import { url } from "../../../config";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_ALL_USERS } from "../../redux/actions/actionTypes";
 
-export default (token, logoutFrontend) => {
+export const useAdmin = (token, logoutFrontend) => {
     const {request} = useContext(HttpContext);
     const dispatch  = useDispatch();
 

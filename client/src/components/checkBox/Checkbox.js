@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({state, children, changeState, classes}) => {
+export const CheckBox = ({state, children, changeState, classes}) => {
     const cls = [
         'checkbox',
         state ? 'checkbox_active' : '',

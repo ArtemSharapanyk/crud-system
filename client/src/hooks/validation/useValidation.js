@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export default (value, validationsRules, baseClasses, dirty, validatedClasses = {
+export const useValidation = (value, validationsRules, baseClasses, dirty, validatedClasses = {
     error: 'form-control_bad-validation',
     successes:'form-control_successes-validation'
 }) => {

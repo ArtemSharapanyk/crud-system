@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const Profile =  mongoose.Schema({
+const profile =  mongoose.Schema({
     name: {type: String, required: true},
     typeOfWork: {type: String, required: true},
     goals: {type: String, required: true},
@@ -9,4 +9,4 @@ const Profile =  mongoose.Schema({
     age: {type: String, required: true}
 });
 
-export default mongoose.model('Profile', Profile)
+export const Profile = mongoose.model('Profile', profile)

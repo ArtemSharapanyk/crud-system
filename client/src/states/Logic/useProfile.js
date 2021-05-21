@@ -5,7 +5,7 @@ import { url } from "../../../config";
 import { HttpContext } from "../../hooks/useHttp/HttpContext";
 import { PULL_USER_PROFILES } from "../../redux/actions/actionTypes";
 
-export default (token) => {
+export const useProfile = (token) => {
     const {request} = useContext(HttpContext);
     const dispatch  = useDispatch();
 

@@ -3,7 +3,7 @@ import { AlertContext } from '../../states/Context/AlertContext';
 import { HttpContext } from './HttpContext';
 
 
-export default ({children}) => {
+export const UseHttp = ({children}) => {
     const [load, setLoad] = useState(false);
     const [errorMessage, setError] = useState(null);
     const [successesMessage, setMessage] = useState(null);

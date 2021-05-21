@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({value, changeValue, placeholder, classes, onBlur, type,typeOfControl = 'input'}) => {
+export const Input = ({value, changeValue, placeholder, classes, onBlur, type,typeOfControl = 'input'}) => {
 
     if(typeOfControl != 'input'){
         return (

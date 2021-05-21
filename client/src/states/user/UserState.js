@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
 import {useSelector} from 'react-redux';
-import useAuthHook from '../../hooks/authHook/useAuthHook';
+import {useAuthHook} from '../../hooks/authHook/useAuthHook';
 import { HttpContext } from '../../hooks/useHttp/HttpContext';
 import {UserContext} from '../Context/userContext';
-import useAdmin from '../Logic/useAdmin';
-import useProfile from '../Logic/useProfile';
-import useUser from '../Logic/useUser';
+import {useAdmin} from '../Logic/useAdmin';
+import {useProfile} from '../Logic/useProfile';
+import {useUser} from '../Logic/useUser';
 
-export default ({children}) => {
+export const UserState = ({children}) => {
     const {isAuth, details, token, role, allUsersArray, profiles} = useSelector(state => state.User);
 
     const {errorMessage} = useContext(HttpContext);

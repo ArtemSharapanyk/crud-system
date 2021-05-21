@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import Btn from '../components/Btn/Btn';
-import Input from '../components/Controller/Controller';
-import useFormValidator from '../hooks/validation/useFormValidator';
-import useInputValidator from '../hooks/validation/useInputValidator';
-import useValidation from '../hooks/validation/useValidation';
+import {Btn} from '../components/Btn/Btn';
+import {Input} from '../components/Controller/Controller';
+import {useFormValidator} from '../hooks/validation/useFormValidator';
+import {useInputValidator} from '../hooks/validation/useInputValidator';
+import {useValidation} from '../hooks/validation/useValidation';
 import { UserContext } from '../states/Context/userContext';
 
 
 
-export default () => {
+export const CreateProfilePage = () => {
     const {createProfile} = useContext(UserContext);
 
     const clsOfInputs = [

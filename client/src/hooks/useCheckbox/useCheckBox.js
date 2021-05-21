@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default () => {
+export const useCheckBox = () => {
     const [active, setActive] = useState(false);
 
     return {

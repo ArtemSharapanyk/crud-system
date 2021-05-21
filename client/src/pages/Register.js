@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import Btn from '../components/Btn/Btn';
-import Checkbox from '../components/checkBox/Checkbox';
-import Input from '../components/Controller/Controller';
-import Loader from '../components/Loader/Loader';
-import useCheckBox from '../hooks/useCheckbox/useCheckBox';
+import {Btn} from '../components/Btn/Btn';
+import {CheckBox} from '../components/checkBox/Checkbox';
+import {Input} from '../components/Controller/Controller';
+import {Loader} from '../components/Loader/Loader';
+import {useCheckBox} from '../hooks/useCheckbox/useCheckBox';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
-import useFormValidator from '../hooks/validation/useFormValidator';
-import useInputValidator from '../hooks/validation/useInputValidator';
-import useValidation from '../hooks/validation/useValidation';
+import {useFormValidator} from '../hooks/validation/useFormValidator';
+import {useInputValidator} from '../hooks/validation/useInputValidator';
+import {useValidation} from '../hooks/validation/useValidation';
 import { UserContext } from '../states/Context/userContext';
 
-export default () => {
+export const Register = () => {
     const {register} = useContext(UserContext);
     const {load}     = useContext(HttpContext);
 
@@ -64,9 +64,9 @@ export default () => {
                 <Input value={userNameValue} changeValue={onChangeUserName} classes = {userNameCls} type = "text" onBlur={onBlurUserName}  placeholder='Username' />
                 <Input value={emailValue} changeValue={onChangeEmail} classes = {emailCls} type = "text" onBlur={onBlurEmail}  placeholder='Email' />
                 <Input value={passwordValue} changeValue={onChangePassword} classes = {passwordCls} type="password" onBlur={onBlurPassword}  placeholder='Password' />
-                <Checkbox classes={'auth-section__checkbox'} state={checkboxState} changeState={setActive.bind(this,prev => !prev)} >
+                <CheckBox classes={'auth-section__checkbox'} state={checkboxState} changeState={setActive.bind(this,prev => !prev)} >
                     Admin
-                </Checkbox>
+                </CheckBox>
             </div>
             <div className="wrapper">
                 <div className="btn-box auth-section__btn-box">

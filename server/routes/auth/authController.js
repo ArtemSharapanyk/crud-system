@@ -1,9 +1,9 @@
-import User from "../../models/User.js";
+import {User} from "../../models/User.js";
 import bcrypt from 'bcrypt';
 
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import Role from "../../models/Role.js";
+import {Role} from "../../models/Role.js";
 
 const secretKey = config.get('jwtSecret');
 
@@ -16,7 +16,7 @@ const generateToken = secretData => {
     )
 };
 
-export default class authController{
+export const authController = class authController{
     async register(req, res){
             try{
                 const {email, password, isAdmin, username} = req.body;

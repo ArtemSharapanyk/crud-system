@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import Btn from '../components/Btn/Btn';
-import Input from '../components/Controller/Controller';
-import Loader from '../components/Loader/Loader';
+import {Btn} from '../components/Btn/Btn';
+import {Input} from '../components/Controller/Controller';
+import {Loader} from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
-import useFormValidator from '../hooks/validation/useFormValidator';
-import useInputValidator from '../hooks/validation/useInputValidator';
-import useValidation from '../hooks/validation/useValidation';
+import {useFormValidator} from '../hooks/validation/useFormValidator';
+import {useInputValidator} from '../hooks/validation/useInputValidator';
+import {useValidation} from '../hooks/validation/useValidation';
 import { UserContext } from '../states/Context/userContext';
 
 
-export default () => {
+export const Login = () => {
     const {login} = useContext(UserContext);
     const {load}  = useContext(HttpContext);
 

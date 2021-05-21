@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../states/Context/userContext';
 import {Switch, Route,Redirect} from 'react-router-dom';
-import CreateProfilePage from '../../pages/CreateProfilePage';
-import Register from '../../pages/Register';
-import Login from '../../pages/Login';
-import AllProfilesPage from '../../pages/AllProfilesPage';
-import UserInfo from '../../pages/UserInfo';
+import {CreateProfilePage} from '../../pages/CreateProfilePage';
+import {Register} from '../../pages/Register';
+import {Login} from '../../pages/Login';
+import {AllProfilesPage} from '../../pages/AllProfilesPage';
+import {UserInfo} from '../../pages/UserInfo';
 import {AllUsers} from '../../pages/AllUsers';
-import Dashboard from '../../pages/Dashboard';
+import {Dashboard} from '../../pages/Dashboard';
 
 
 
-export default () => {
+export const PageContainer = () => {
     const {isAuth,role} = useContext(UserContext);
      
     if(isAuth){

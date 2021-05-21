@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
-import Profile from "../../models/Profile.js";
-import User from "../../models/User.js";
+import {Profile} from "../../models/Profile.js";
+import {User} from "../../models/User.js";
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
@@ -14,7 +14,7 @@ const generateToken = secretData => {
     )
 };
 
-export  class UserController{
+export const UserController = class UserController{
     async createProfile(req,res){
         try{
             const {name, typeOfWork, goals, minds, age} = req.body;

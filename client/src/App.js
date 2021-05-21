@@ -1,15 +1,15 @@
 import React from 'react';
 import {BrowserRouter}     from 'react-router-dom';
 import                                        './assets/scss/main.scss';
-import Alert from './components/Alert/Alert';
-import Nav from './components/Nav/Nav';
-import PageConatiner from './components/PageContainer/PageConatiner';
-import UseHttp from './hooks/useHttp/useHttp';
-import AlertState from './states/Alert/AlertState';
-import DashboardState from './states/Dashboard/DashboardState';
-import UserState from './states/User/UserState';
+import {Alert} from './components/Alert/Alert';
+import {Nav} from './components/Nav/Nav';
+import {PageContainer} from './components/PageContainer/PageContainer';
+import {UseHttp} from './hooks/useHttp/useHttp';
+import {AlertState} from './states/Alert/AlertState';
+import {DashboardState} from './states/Dashboard/DashboardState';
+import {UserState} from './states/User/UserState';
 
-export default () => {
+export const App = () => {
     return (
         <BrowserRouter>
             <AlertState>
@@ -20,7 +20,7 @@ export default () => {
                             <Nav/>
                             <main className="pages">
                                 <div className="wrapper">
-                                    <PageConatiner/>
+                                    <PageContainer/>
                                 </div>
                             </main>
                         </UserState>

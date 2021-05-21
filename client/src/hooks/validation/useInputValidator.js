@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default (initialValue) => {
+export const useInputValidator = (initialValue) => {
     const [value, setValue] = useState(initialValue || '');
     const [dirty, setDirtyState] = useState(false);
 

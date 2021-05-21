@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Btn from '../components/Btn/Btn';
-import Card from '../components/Card/Card'
-import Loader from '../components/Loader/Loader';
+import {Btn} from '../components/Btn/Btn';
+import {Card} from '../components/Card/Card'
+import {Loader} from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { UserContext } from '../states/Context/userContext';
 

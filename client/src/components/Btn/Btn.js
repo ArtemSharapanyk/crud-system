@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({children,classes, disabled, onClick}) => {
+export const Btn = ({children,classes, disabled, onClick}) => {
     const cls = [
         classes,
         disabled ? 'btn_disable' : ''

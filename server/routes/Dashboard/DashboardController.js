@@ -1,7 +1,7 @@
-import User from '../../models/User.js';
-import Profile from '../../models/Profile.js';
+import {User} from '../../models/User.js';
+import {Profile} from '../../models/Profile.js';
 
-export class DashboardController{
+export const DashboardController = class DashboardController{
     async pullDashboardData(req, res){
         try{
             const profiles = await Profile.find();

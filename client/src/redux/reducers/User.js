@@ -9,7 +9,7 @@ const initialState = {
     profiles: null
 };
 
-export default (state = initialState, {type, payload}) => {
+export const User = (state = initialState, {type, payload}) => {
     switch(type){
         case REGISTER:
             return state;

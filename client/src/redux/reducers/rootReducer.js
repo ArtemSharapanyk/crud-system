@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import User from "./User";
-import Dashboard from './Dashboard';
+import {User} from "./User";
+import {Dashboard} from './Dashboard';
 
 
-export default combineReducers({
+export const rootReducer = combineReducers({
     User,
     Dashboard
 });

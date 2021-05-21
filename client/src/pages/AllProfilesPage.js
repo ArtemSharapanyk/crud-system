@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Btn from '../components/Btn/Btn';
-import Card from '../components/Card/Card'
-import Loader from '../components/Loader/Loader';
+import {Btn} from '../components/Btn/Btn';
+import {Card} from '../components/Card/Card'
+import {Loader} from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { UserContext } from '../states/Context/userContext';
 
-export default () => {
+export const AllProfilesPage = () => {
     const {getProfiles, profiles, deleteProfile} = useContext(UserContext);
     const [updateCardVisible, setUpdateCardVisible] = useState(false);
     const [cardData,updateData] = useState(null);
@@ -38,7 +38,7 @@ export default () => {
                     return profiles.map((item, i) => {
                         return (
                             <>
-                                <Card key={item.id + 'profile card' + i} cardState={updateCardVisible} cardData = {item}>
+                                <Card key={item.id + 'profile card' + i} cardData = {item}>
                                     <Btn classes={'btn btn_send-data'} onClick={showAndUpdateCardData.bind(this, item)}>
                                         Update
                                     </Btn>

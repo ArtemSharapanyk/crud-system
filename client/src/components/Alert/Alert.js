@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AlertContext } from '../../states/Context/AlertContext';
 
 
-export default () => {
+export const Alert = () => {
     const {message, type,visible} = useContext(AlertContext);
     const cls = [
         `alert alert_${type}`,

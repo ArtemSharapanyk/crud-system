@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import Loader from '../components/Loader/Loader';
+import {Loader} from '../components/Loader/Loader';
 import { HttpContext } from '../hooks/useHttp/HttpContext';
 import { DashboardContex } from '../states/Context/DashboardContext';
 
-export default () => {
+export const Dashboard = () => {
     const {pullDashboardData, usersCount, profilesUpperEighteen, profilesCount} = useContext(DashboardContex);
     const {load} = useContext(HttpContext);
 
@@ -39,7 +39,7 @@ export default () => {
                 </li>
                 <li className='dashboard-section__list-item'>
                     <div className="dashboard-section__list-item-property">
-                        Count of users with age upper then 18:
+                        Count of profiles with age upper then 18:
                         <div className="dashboard-section__list-item-value">
                             {profilesUpperEighteen}
                         </div>

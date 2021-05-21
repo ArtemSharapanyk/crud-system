@@ -6,14 +6,16 @@ const initialState = {
     profilesUpperEighteen: null
 };
 
-export default (state = initialState, {type, payload}) => {
+export const Dashboard = (state = initialState, {type, payload}) => {
     switch(type){
         case PULL_DASHBOARD_INFO:
+            const {usersCount,profilesCount, profilesUpperEighteen} = payload;
+
             return {
                 ...state, 
-                usersCount: payload.usersCount,
-                profilesCount: payload.profilesCount,
-                profilesUpperEighteen: payload.profilesUpperEighteen
+                usersCount,
+                profilesCount,
+                profilesUpperEighteen
             }
         default:
             return state;

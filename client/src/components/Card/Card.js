@@ -5,43 +5,42 @@ import {useValidation} from '../../hooks/validation/useValidation';
 import { UserContext } from '../../states/Context/userContext';
 import {Btn} from '../Btn/Btn';
 import {Input} from '../Controller/Controller';
+import { CardPart } from './CardPart';
+import { profileCard, profileUpdateCard, userCard, userCardFromListPage, userUpdateAdminCard, userUpdateCard } from './CardTypes';
+
 
 
 export const Card = ({type = 'profile-card', classes,cardData, children, closeCardFunc}) => {
-    if(type === 'profile-card' ){
+    if(type === profileCard){
         const {name, typeOfWork, goals, minds, age} = cardData;
+
         return (
             <li className={["card card_profile-card", classes ? classes : ''].join(' ')}>
-                    <div className="card__name card__property">
-                        Name of profiles:
-                        <div className="card__value">
-                            {name}
-                        </div>
-                    </div>
-                    <div className="card__type-of-work card__property">
-                        Type of work:
-                        <div className="card__value">
-                            {typeOfWork}
-                        </div>
-                    </div>
-                    <div className="card__list-of-goals card__property">
-                        Goals:
-                        <div className="card__value">
-                            {goals}
-                        </div>
-                    </div>
-                    <div className="card__minds card__property">
-                        Age:
-                        <div className="card__value">
-                            {age}
-                        </div>
-                    </div>
-                    <div className="card__minds card__property">
-                        Your minds:
-                        <div className="card__value">
-                            {minds}
-                        </div>
-                    </div>
+                    <CardPart
+                        property={'Name of profiles:'}
+                        value={name}
+                        specialClass={'card__name'}
+                    />
+                    <CardPart
+                        property={'Type of work:'}
+                        value={typeOfWork}
+                        specialClass={'card__type-of-work'}
+                    />
+                    <CardPart
+                        property={'Goals:'}
+                        value={goals}
+                        specialClass={'card__list-of-goals'}
+                    />
+                    <CardPart
+                        property={'Age:'}
+                        value={age}
+                        specialClass={'card__age'}
+                    />
+                    <CardPart
+                        property={'Your minds:'}
+                        value={minds}
+                        specialClass={'card__minds'}
+                    />
                     <div className="card__btn" >
                         <div className="btn-box">
                             {children}
@@ -51,22 +50,20 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
         )
     }
 
-    if(type === 'user-card'){
+    if(type === userCard){
         const {username, email} = cardData;
         return (
             <div className={['card card_user', classes ? classes : ''].join(' ')}>
-                    <div className="card__name card__property">
-                        User name:
-                        <div className="card__value">
-                            {username}
-                        </div>
-                    </div>
-                    <div className="card__name card__property">
-                        Email:
-                        <div className="card__value">
-                            {email}
-                        </div>
-                    </div>
+                    <CardPart
+                        property={'User name:'}
+                        value={username}
+                        specialClass={'card__name'}
+                    />
+                    <CardPart
+                        property={'Email:'}
+                        value={email}
+                        specialClass={'card__name'}
+                    />
                     <div className="card__btn" >
                         {children}
                     </div>
@@ -74,29 +71,26 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
         )
     }
 
-    if(type === 'user-card-list'){
+    if(type === userCardFromListPage){
         const {username, email, role} = cardData;
 
         return (
             <div className={['card card_user', classes ? classes : ''].join(' ')}>
-                    <div className="card__name card__property">
-                        User name:
-                        <div className="card__value">
-                            {username}
-                        </div>
-                    </div>
-                    <div className="card__name card__property">
-                        Email:
-                        <div className="card__value">
-                            {email}
-                        </div>
-                    </div>
-                    <div className="card__name card__property">
-                        Role:
-                        <div className="card__value">
-                            {role}
-                        </div>
-                    </div>
+                    <CardPart
+                        property={'User name:'}
+                        value={username}
+                        specialClass={'card__name'}
+                    />
+                    <CardPart
+                        property={'Email:'}
+                        value={email}
+                        specialClass={'card__name'}
+                    />
+                    <CardPart
+                        property={'Role:'}
+                        value={role}
+                        specialClass={'card__name'}
+                    />
                     <div className="card__btn" >
                         <div className="btn-box">
                             {children}
@@ -106,7 +100,7 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
         )
     }
 
-    if(type === 'profile-update-card'){
+    if(type === profileUpdateCard){
 
         const {updateProfile} = useContext(UserContext);
 
@@ -124,25 +118,51 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
     
         const clsOfTextArea = ['message-block create-profile-section__message-block ']; 
         
-        const {value: profileNameValue, onChange:onChangeProfileName, onBlur:onBlurProfileName, dirty: profileNameDirty} = useInputValidator(name);
-        const {value: typeOfWorkValue, onChange:onChangeTypeOfWork, onBlur:onBlurTypeOfWork, dirty: typeOfWorkDirty} = useInputValidator(typeOfWork);
+        const {value: profileNameValue, onChange:onChangeProfileName,
+            onBlur:onBlurProfileName, dirty: profileNameDirty
+        } = useInputValidator(name);
+
+        const {value: typeOfWorkValue, onChange:onChangeTypeOfWork,
+            onBlur:onBlurTypeOfWork, dirty: typeOfWorkDirty
+        } = useInputValidator(typeOfWork);
     
-        const {value: goalsValue, onChange:onChangeGoals, onBlur:onBlurGoals, dirty: goalsDirty} = useInputValidator(goals);
-        const {value: yourMindsValue, onChange:onChangeYourMinds, onBlur:onBlurYourMinds, dirty: yourMindsDirty} = useInputValidator(minds);
+        const {value: goalsValue, onChange:onChangeGoals,
+            onBlur:onBlurGoals, dirty: goalsDirty
+        } = useInputValidator(goals);
+
+        const {value: yourMindsValue, onChange:onChangeYourMinds,
+            onBlur:onBlurYourMinds, dirty: yourMindsDirty
+        } = useInputValidator(minds);
     
-        const {value: ageValue, onChange:onChangeAge, onBlur:onBlurAge, dirty: ageDirty} = useInputValidator(age);
+        const {value: ageValue, onChange:onChangeAge,
+            onBlur:onBlurAge, dirty: ageDirty
+        } = useInputValidator(age);
 
 
-        const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(profileNameValue, {minLength: 6}, clsOfInputs,profileNameDirty);
-        const {inputValided: typeOfWorkValided, clsOfInput:typeOfWorkCls } = useValidation(typeOfWorkValue, {minLength: 6}, clsOfInputs, typeOfWorkDirty);
-        const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(ageValue, {minLength: 1, isNumber: true}, clsOfInputs,ageDirty);
+        const {inputValided:profileNameValided, clsOfInput: profileNameCls} = useValidation(
+            profileNameValue,{minLength: 6}, clsOfInputs,profileNameDirty
+        );
+
+        const {inputValided: typeOfWorkValided, clsOfInput:typeOfWorkCls } = useValidation(
+            typeOfWorkValue, {minLength: 6}, clsOfInputs, typeOfWorkDirty
+        );
+
+        const {inputValided: ageValided, clsOfInput: ageCls} = useValidation(
+            ageValue, {minLength: 1, isNumber: true}, clsOfInputs,ageDirty
+        );
     
         
-        const {inputValided: goalsValided, clsOfInput: goalsCls} = useValidation(goalsValue, {minLength: 6}, clsOfInputs,goalsDirty);
-        const {inputValided: yourMindsValided, clsOfInput:yourMindsCls } = useValidation(yourMindsValue, {minLength: 20}, clsOfTextArea, yourMindsDirty,{
-            error: 'message-block_bad-validation',
-            successes: 'message-block_successes-validation'
-        });
+        const {inputValided: goalsValided,
+            clsOfInput: goalsCls
+        } = useValidation(goalsValue, {minLength: 6}, clsOfInputs,goalsDirty);
+        
+        const {inputValided: yourMindsValided, clsOfInput:yourMindsCls } = useValidation(
+            yourMindsValue, {minLength: 20}, clsOfTextArea, yourMindsDirty,
+            {
+                error: 'message-block_bad-validation',
+                successes: 'message-block_successes-validation'
+            }
+        );
 
         const data = {
             name: profileNameValue,
@@ -153,7 +173,9 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
             age: ageValue
         };
         
-        const formValided = useFormValidator(profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided);
+        const formValided = useFormValidator(
+            profileNameValided, typeOfWorkValided, goalsValided, yourMindsValided, ageValided
+        );
 
         const update = () => {
             updateProfile(data);
@@ -186,7 +208,7 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
         )
     }
 
-    if(type === 'user-update-card'){
+    if(type === userUpdateCard){
         const {updateUserInfo, userInfo} = useContext(UserContext);
 
         const {email, username} = userInfo;
@@ -202,14 +224,28 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
             'auth-section__input',
         ];
     
-        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator(email);
-        const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator(username);
+        const {value: emailValue, onChange:onChangeEmail,
+            onBlur:onBlurEmail, dirty: emailDirty
+        } = useInputValidator(email);
+        const {value: passwordValue, onChange:onChangePassword,
+            onBlur:onBlurPassword, dirty: passwordDirty
+        } = useInputValidator();
+        const {value: userNameValue, onChange:onChangeUserName,
+            onBlur:onBlurUserName, dirty: userNameDirty
+        } = useInputValidator(username);
 
 
-        const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
-        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
-        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(userNameValue, {minLength: 4}, clsOfInputs,userNameDirty);
+        const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(
+            emailValue, {isEmail: true}, clsOfInputs, emailDirty
+        );
+
+        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(
+            passwordValue, {minLength: 6}, clsOfInputs,passwordDirty
+        );
+
+        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(
+            userNameValue, {minLength: 4}, clsOfInputs,userNameDirty
+        );
 
         const formValided = useFormValidator(emailValided, passwordValided, userNameValided);
 
@@ -249,7 +285,7 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
         )
     }
 
-    if(type === 'user-update-card-admin'){
+    if(type === userUpdateAdminCard){
         const {updateUserInfoAdmin} = useContext(UserContext);
     
         const {email, username, role, id} =  cardData ? cardData : {};
@@ -265,16 +301,38 @@ export const Card = ({type = 'profile-card', classes,cardData, children, closeCa
             'auth-section__input',
         ];
     
-        const {value: emailValue, onChange:onChangeEmail, onBlur:onBlurEmail, dirty: emailDirty} = useInputValidator(email);
-        const {value: passwordValue, onChange:onChangePassword, onBlur:onBlurPassword, dirty: passwordDirty} = useInputValidator();
-        const {value: userNameValue, onChange:onChangeUserName, onBlur:onBlurUserName, dirty: userNameDirty} = useInputValidator(username);
-        const {value: roleName, onChange:onChangeRoleName, onBlur:onBlurRoleName, dirty: roleNameDirty} = useInputValidator(role);
+        const {value: emailValue, onChange:onChangeEmail,
+            onBlur:onBlurEmail, dirty: emailDirty
+        } = useInputValidator(email);
+
+        const {value: passwordValue, onChange:onChangePassword,
+            onBlur:onBlurPassword, dirty: passwordDirty
+        } = useInputValidator();
+
+        const {value: userNameValue, onChange:onChangeUserName,
+            onBlur:onBlurUserName, dirty: userNameDirty
+        } = useInputValidator(username);
+
+        const {value: roleName, onChange:onChangeRoleName,
+            onBlur:onBlurRoleName, dirty: roleNameDirty
+        } = useInputValidator(role);
 
 
-        const {inputValided: emailValided, clsOfInput: emailCls} = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
-        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(passwordValue, {minLength: 6}, clsOfInputs,passwordDirty);
-        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(userNameValue, {minLength: 4}, clsOfInputs,userNameDirty);
-        const {inputValided: roleNameValided, clsOfInput: roleNameCls} = useValidation(roleName, {minLength: 4}, clsOfInputs,roleNameDirty);
+        const {inputValided: emailValided,
+            clsOfInput: emailCls
+        } = useValidation(emailValue, {isEmail: true}, clsOfInputs, emailDirty);
+
+        const {inputValided: passwordValided, clsOfInput: passwordCls} = useValidation(
+            passwordValue, {minLength: 6}, clsOfInputs,passwordDirty
+        );
+
+        const {inputValided: userNameValided, clsOfInput: userNameCls} = useValidation(
+            userNameValue, {minLength: 4}, clsOfInputs,userNameDirty
+        );
+
+        const {inputValided: roleNameValided, clsOfInput: roleNameCls} = useValidation(
+            roleName, {minLength: 4}, clsOfInputs,roleNameDirty
+        );
 
 
         const formValided = useFormValidator(emailValided, passwordValided, userNameValided, roleNameValided);
